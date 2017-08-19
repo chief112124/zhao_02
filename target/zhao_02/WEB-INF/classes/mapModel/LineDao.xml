@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.line.LineDao">
+
+    <select id="queryLineById" parameterType="int" resultType="model.line.Line">
+        select
+        *
+        from line
+        where id=#{id}
+    </select>
+
+    <select id="queryLineAllPage" parameterType="java.util.HashMap" resultType="model.line.Line">
+        select
+        *
+        from line
+        where status = 0
+        <if test="beginTime != 0">
+            and go_time_stamp &gt; #{beginTime}
+        </if>
+        <if test="endTime != 0">
+            and go_time_stamp &lt; #{endTime}
+        </if>
+        order by go_time_stamp asc
+        limit #{offset},#{limit};
+    </select>
+
+    <select id="queryLinesAll"  resultType="model.line.Line">
+        select
+        *
+        from line
+        where status=0
+        <if test="beginTime != 0">
+            and go_time_stamp &gt; #{beginTime}
+        </if>
+        <if test="endTime != 0">
+            and go_time_stamp &lt; #{endTime}
+        </if>
+    </select>
+
+    <insert id="addLine" useGeneratedKeys="true" keyProperty="id" parameterType="model.line.Line">
+        insert into line
+        (line_name,line_content,price,go_time_stamp,create_time,status)
+        values
+        (#{lineName},#{lineContent},#{price},#{goTimeStamp},#{createTime},#{status});
+    </insert>
+
+    <delete id="deleteLineById" parameterType="int">
+        delete from line
+        where
+        id = #{lineId};
+    </delete>
+
+    <update id="updateLine" parameterType="model.line.Line">
+        update line set
+         line_name = #{lineName},line_content = #{lineContent},price = #{price},go_time_stamp = #{goTimeStamp}
+        where id = #{id};
+    </update>
+</mapper>

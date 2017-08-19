@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.line.DayDao">
+
+    <select id="getDaysByLineId" parameterType="int" resultType="model.line.Day">
+        select
+        *
+        from line_day
+        where line_id=#{lineId} order by day_num asc
+    </select>
+
+    <select id="queryOneById" parameterType="int" resultType="model.line.Day">
+        select
+        *
+        from line_day
+        where id = #{id}
+    </select>
+
+    <insert id="inertLineDay" parameterType="model.line.Day">
+        insert into line_day
+        (line_id,day_num,title,meal,hotel,travel,linght_point,create_time,status)
+        values
+        (#{lineId},#{dayNum},#{title},#{meal},#{hotel},#{travel},#{linghtPoint},#{createTime},#{status});
+    </insert>
+
+    <delete id="deleteDaysById" parameterType="int">
+        delete from line_day
+        where
+        id = #{id};
+    </delete>
+
+    <delete id="deleteDaysByLineId" parameterType="int">
+        delete from line_day
+        where
+        line_id = #{lineId};
+    </delete>
+
+    <update id="updateDaysById" parameterType="model.line.Day">
+        update line_day set
+        day_num = #{dayNum},title = #{title},meal = #{meal},hotel = #{hotel},travel = #{travel},linght_point = #{linghtPoint}
+        where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.order.OrderDao">
+
+    <select id="queryOrderById" parameterType="int" resultType="model.Order.Order">
+        select
+        *
+        from order_main
+        where id=#{id}
+    </select>
+
+    <select id="queryOrderByTypePage" parameterType="java.util.HashMap" resultType="model.Order.Order">
+        select
+        *
+        from order_main
+        where status=#{status}
+        order by create_time desc
+        limit #{offset},#{limit};
+    </select>
+
+    <select id="queryOrderByType" parameterType="int" resultType="int">
+        select
+        count(*)
+        from order_main
+        where status=#{status};
+    </select>
+
+    <insert id="addOrder" parameterType="model.Order.Order">
+        insert into order_main
+        (line_id,adult_num,child_num,phone,price,total_price,note,create_time,status)
+        values
+        (#{lineId},#{adultNum},#{childNum},#{phone},#{price},#{totalPrice},#{note},#{createTime},#{status});
+    </insert>
+
+    <update id="deleteOrderById" parameterType="int">
+        update order_main set status = 1
+        where
+        id = #{id};
+    </update>
+
+    <select id="queryAll" parameterType="java.util.HashMap" resultType="model.Order.Order" >
+        SELECT *
+        FROM order_main
+        LIMIT #{offset},#{limit}
+    </select>
+
+</mapper>

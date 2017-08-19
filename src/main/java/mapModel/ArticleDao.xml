@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.article.ArticleDao">
+
+    <select id="queryArticleById" parameterType="int" resultType="model.artical.Article">
+        select
+        *
+        from article
+        where id=#{id}
+    </select>
+
+    <select id="queryArticleByTypePage" parameterType="java.util.HashMap" resultType="model.artical.Article">
+        select
+        *
+        from article
+        where article_type=#{articleType}
+        order by sort asc
+        limit #{offset},#{limit};
+    </select>
+
+    <select id="queryArticleByType" parameterType="int" resultType="int">
+        select
+        count(*)
+        from article
+        where article_type=#{articleType};
+    </select>
+
+    <insert id="insertArticle" parameterType="model.artical.Article">
+        insert into article
+        (title,content,article_type,sort,create_time,update_time,status)
+        values
+        (#{title},#{content},#{articleType},#{sort},#{createTime},#{updateTime},#{status});
+    </insert>
+
+    <delete id="deleteArticleById" parameterType="int">
+        delete from article
+        where
+        id = #{id};
+    </delete>
+
+    <update id="updateArticleById" parameterType="model.artical.Article">
+        update article set
+        title=#{title},content=#{content},article_type=#{articleType},sort=#{sort},update_time=#{updateTime}
+        where id = #{id};
+    </update>
+
+    <select id="queryAll" parameterType="java.util.HashMap"  resultType="model.artical.Article">
+        SELECT
+        * FROM article
+        LIMIT #{offset},#{limit}
+    </select>
+</mapper>

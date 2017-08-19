@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="cotroller"/>
+    <context:component-scan base-package="dao"/>
+    <context:component-scan base-package="model"/>
+    <context:component-scan base-package="service"/>
+
+    <mvc:default-servlet-handler/>
+
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/json;charset=UTF-8"/>
+                <property name="features">
+                    <array>
+                        <value>WriteMapNullValue</value>
+                        <!--<value>WriteNullStringAsEmpty</value>-->
+                        <value>DisableCircularReferenceDetect</value>
+                    </array>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!-- ViewResolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property value="/WEB-INF/jsp/" name="prefix"/>
+        <property value=".jsp" name="suffix"/>
+        <property name="contentType">
+            <value>text/html;charset=UTF-8</value>
+        </property>
+    </bean>
+
+    <!-- 资源映射 -->
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <!-- 图片上传 -->
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+        <property value="UTF-8" name="defaultEncoding"/>
+        <property value="10000000" name="maxUploadSize"/>
+    </bean>
+
+</beans>
