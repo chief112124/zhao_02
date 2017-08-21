@@ -73,13 +73,13 @@ public class ArticleService {
         return result;
     }
 
-    public Result queryArticleByType(int articleType,int pageSize,int pageId) {
+    public Result queryArticleByType(int articleType,int page,int row) {
         Result result = new Result();
         result.setStatus(Result.SUCCESS);
         HashMap<String,Integer> map = new HashMap<String,Integer>();
         map.put("articleType" ,articleType);
-        map.put("limit", pageSize);
-        map.put("offset",pageSize*(pageId-1));
+        map.put("limit", row);
+        map.put("offset",page);
         List<Article> articles = new ArrayList<Article>();
         try{
             int count = 0;
@@ -106,28 +106,36 @@ public class ArticleService {
     }
 
 
-    public Result queryAll(int pageSize,int pageId) {
+    public Result queryAll(int rows,int page) {
         Result result = new Result();
         result.setStatus(Result.SUCCESS);
         HashMap<String,Integer> map = new HashMap<String,Integer>();
-        map.put("limit", pageSize);
-        map.put("offset",pageId);
+        map.put("limit", rows);
+        map.put("offset",page);
         List<Article> articles = articleDao.queryAll(map);
         result.setRows(this.articleListVO(articles));
         result.setTotal(articles.size());
-        /*    try{
+
+            try{
             articles = articleDao.queryAll(map);
             if(articles == null || articles.size() == 0) {
                 result.setStatus(Result.NORECORD);
                 result.setMessage("记录不存在！");
             }
             result.setRows(articles);
-            result.setTotal(articles.size());
+            result.setTotal(this.queryArticleAllCount());
         }catch (Exception e){
             result.setStatus(Result.INCORRECT);
             result.setMessage("查询失败！");
-        }*/
+        }
         return result;
+    }
+
+    public int queryArticleAllCount() {
+        Result result = new Result();
+        int count = articleDao.queryArticleAllCount();
+        return count;
+
     }
 
 

@@ -25,4 +25,6 @@ public interface ArticleDao {
     public int queryArticleByType(int articleType);
 
     public List<Article> queryAll(HashMap<String, Integer> map);
+
+    public int queryArticleAllCount();
 }

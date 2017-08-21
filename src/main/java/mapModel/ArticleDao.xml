@@ -25,6 +25,12 @@
         where article_type=#{articleType};
     </select>
 
+    <select id="queryArticleAllCount" parameterType="int" resultType="int">
+        select
+        count(*)
+        from article;
+    </select>
+
     <insert id="insertArticle" parameterType="model.artical.Article">
         insert into article
         (title,content,article_type,sort,create_time,update_time,status)
@@ -49,4 +55,5 @@
         * FROM article
         LIMIT #{offset},#{limit}
     </select>
+
 </mapper>

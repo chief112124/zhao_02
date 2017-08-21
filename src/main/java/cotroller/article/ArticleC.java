@@ -44,14 +44,14 @@ public class ArticleC {
 
     @RequestMapping(value = "/queryArticleByType")
     @ResponseBody
-    public Result queryArticleByType(int articleType,int pageSize,int pageId){
-        return articleService.queryArticleByType(articleType,pageSize,pageId);
+    public Result queryArticleByType(int articleType,Integer page,Integer rows){
+        return articleService.queryArticleByType(articleType,page.intValue(),rows.intValue());
     }
 
     @RequestMapping(value = "/queryAll")
     @ResponseBody
-    public Result queryAll() {
-        Result result = articleService.queryAll(30, 0);
+    public Result queryAll(Integer rows, Integer page) {
+        Result result = articleService.queryAll(rows.intValue(), page.intValue());
         return result;
     }
 }

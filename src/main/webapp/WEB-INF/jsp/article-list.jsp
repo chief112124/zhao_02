@@ -60,7 +60,13 @@
             collapsible:true,
             pagination:true,
             method:'get',
-            pageSize:30,
+            pageSize : 5,//默认选择的分页是每页5行数据
+            pageList : [ 5, 10, 15, 20 ],//可以选择的分页集合
+            pageNumber: 1,
+            nowrap : true,//设置为true，当数据长度超出列宽时将会自动截取
+            striped : true,//设置为true将交替显示行背景。
+            pagination : true,//分页
+            rownumbers : true,//行数
             title:"文章列表",
             url:'/article/queryAll',
             loadMsg:'数据加载中......',
@@ -79,6 +85,7 @@
     }
 
     $(function () {
+
         /*新增文章*/
         $('#addArticle').bind('click', function () {
             $(".tree-title:contains('新增文章')").parent().click();
@@ -144,9 +151,14 @@
                     collapsible:true,
                     pagination:true,
                     method:'get',
-                    pageSize:30,
-                    title:"文章列表",
-                    url:'/article/queryArticleByType?articleType='+selectValue+'&pageSize=30&pageId=1',
+                    pageSize : 5,//默认选择的分页是每页5行数据
+                    pageList : [ 5, 10, 15, 20 ],//可以选择的分页集合
+                    nowrap : true,//设置为true，当数据长度超出列宽时将会自动截取
+                    striped : true,//设置为true将交替显示行背景。
+                    pagination : true,//分页
+                    rownumbers : true,//行数
+                    pageNumber: 1,
+                    url:'/article/queryArticleByType?articleType='+selectValue,
                     loadMsg:'数据加载中......',
                 }
             );
@@ -156,6 +168,10 @@
 
 </script>
 <%--
+
+
+
+
 <script>
 
     function getSelectionsIds(){
