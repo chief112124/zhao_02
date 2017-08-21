@@ -17,8 +17,8 @@ import java.util.List;
 @Service
 public class ArticleService {
 
-    @Autowired
-    private ArticleDao articleDao;
+  @Autowired
+  ArticleDao articleDao;
     public Result addArticle(Article article) {
         Result result = new Result();
         result.setStatus(Result.SUCCESS);
@@ -82,14 +82,22 @@ public class ArticleService {
         map.put("offset",pageSize*(pageId-1));
         List<Article> articles = new ArrayList<Article>();
         try{
-            int count = articleDao.queryArticleByType(articleType);
-            articles = articleDao.queryArticleByTypePage(map);
+            int count = 0;
+            if (articleType != 0) {
+                count  = articleDao.queryArticleByType(articleType);
+                articles = articleDao.queryArticleByTypePage(map);
+            } else  {
+                articles = articleDao.queryAll(map);
+                count  = articles.size();
+            }
             if(articles == null || articles.size() == 0) {
                 result.setStatus(Result.NORECORD);
                 result.setMessage("记录不存在！");
+                result.setTotal(0);
+                return result;
             }
-            result.setCount(count);
-            result.setData(articles);
+            result.setTotal(count);
+            result.setRows(this.articleListVO(articles));
         }catch (Exception e){
             result.setStatus(Result.INCORRECT);
             result.setMessage("查询失败！");
@@ -104,9 +112,8 @@ public class ArticleService {
         HashMap<String,Integer> map = new HashMap<String,Integer>();
         map.put("limit", pageSize);
         map.put("offset",pageId);
-        List<Article> articles = new ArrayList<Article>();
-        articles = articleDao.queryAll(map);
-        result.setRows(articles);
+        List<Article> articles = articleDao.queryAll(map);
+        result.setRows(this.articleListVO(articles));
         result.setTotal(articles.size());
         /*    try{
             articles = articleDao.queryAll(map);
@@ -121,5 +128,31 @@ public class ArticleService {
             result.setMessage("查询失败！");
         }*/
         return result;
+    }
+
+
+    List<Article> articleListVO (List<Article> articles) {
+        for (Article item : articles) {
+            switch (item.getArticleType()) {
+                case 1:
+                    item.setTypeStr("情感");
+                    break;
+                case 2:
+                    item.setTypeStr("军事");
+                    break;
+                case 3:
+                    item.setTypeStr("历史");
+                    break;
+                case 4:
+                    item.setTypeStr("搞笑");
+                    break;
+                case 5:
+                    item.setTypeStr("社会");
+                    break;
+                default:
+                    item.setTypeStr("情感");
+            }
+        }
+        return articles;
     }
 }

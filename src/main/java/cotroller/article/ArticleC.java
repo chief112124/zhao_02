@@ -48,15 +48,10 @@ public class ArticleC {
         return articleService.queryArticleByType(articleType,pageSize,pageId);
     }
 
-    /*
-    *  查询所有文章
-    */
-
     @RequestMapping(value = "/queryAll")
     @ResponseBody
     public Result queryAll() {
         Result result = articleService.queryAll(30, 0);
-        System.out.println("--------------------"+result.toString());
         return result;
     }
 }

@@ -37,7 +37,7 @@
 			<li>
 				<span>路线管理</span>
 				<ul>
-					<li data-options="attributes:{'url':'content-category'}">待定</li>
+					<li data-options="attributes:{'url':'test.jsp'}">待定</li>
 				</ul>
 			</li>
          </ul>

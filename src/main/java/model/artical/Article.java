@@ -12,6 +12,18 @@ public class Article {
     private long createTime; //创建时间
     private long updateTime; //修改时间
     private int status;  //文章状态
+
+    /*VO属性*/
+    private String typeStr;
+
+    public String getTypeStr() {
+        return typeStr;
+    }
+
+    public void setTypeStr(String typeStr) {
+        this.typeStr = typeStr;
+    }
+
     public int getId() {
         return id;
     }
