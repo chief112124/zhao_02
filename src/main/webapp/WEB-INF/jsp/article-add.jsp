@@ -44,7 +44,6 @@
 	//页面初始化完毕后执行此方法
 	$(function(){
 		//创建富文本编辑器
-
 		itemAddEditor = KindEditor.create("#itemAddForm [name=content]", TT.kingEditorParams)
 	});
 	//提交表单

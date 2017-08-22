@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="itemList" title="订单列表"
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/order/queryAll',method:'get',pageSize:30,toolbar:toolbar">
+<table class="easyui-datagrid" id="orderList" title="订单列表"
+       data-options="singleSelect:true,collapsible:true,pagination:true,toolbar:tbOrder">
     <thead>
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
@@ -13,9 +13,7 @@
         <th data-options="field:'status',width:100">预定时单价</th>
         <th data-options="field:'totalPrice',width:100">预定时总价</th>
         <th data-options="field:'phone',width:100">联系电话</th>
-<%--
-        <th data-options="field:'createTime',width:130,align:'center',formatter:TAOTAO.formatDateTime">预定时间</th>        <th data-options="field:'sellPoint',width:100">预定时总价</th>
---%>
+        <th data-options="field:'createTime',width:130,align:'center',formatter:TAOTAO.formatDateTime">预定时间</th>
         <th data-options="field:'note',width:100">备注</th>
 
 
@@ -27,11 +25,39 @@
     </tr>
     </thead>
 </table>
+
+<div id="tbOrder" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <div id="addOrder" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</div>
+        <div id="deletOrder" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">删除</div>
+            开始时间: <input id="fromDate" class="easyui-datebox" style="width:120px">
+            截止时间: <input id="endDate" class="easyui-datebox" style="width:120px">
+            <a id="orderSearch" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+    </div>
+
+</div>
+
 <script>
 
+    /*默认加载全部的数据*/
+    $('#orderList').datagrid(
+        {
+            method:'get',
+            pageSize : 5,//默认选择的分页是每页5行数据
+            pageList : [ 5, 10, 15, 20 ],//可以选择的分页集合
+            pageNumber: 1,
+            nowrap : true,//设置为true，当数据长度超出列宽时将会自动截取
+            striped : true,//设置为true将交替显示行背景。
+            pagination : true,//分页
+            rownumbers : true,//行数
+            url:'/order/queryAll',
+            loadMsg:'数据加载中......',
+        }
+    );
+
     function getSelectionsIds(){
-        var itemList = $("#itemList");
-        var sels = itemList.datagrid("getSelections");
+        var orderList = $("#orderList");
+        var sels = orderList.datagrid("getSelections");
         var ids = [];
         for(var i in sels){
             ids.push(sels[i].id);
@@ -40,47 +66,13 @@
         return ids;
     }
 
-    var toolbar = [{
-        text:'新增',
-        iconCls:'icon-add',
-        handler:function(){
-            $(".tree-title:contains('新增订单')").parent().click();
-        }
-    },{
-        text:'编辑',
-        iconCls:'icon-edit',
-        handler:function(){
-            var ids = getSelectionsIds();
-            if(ids.length == 0){
-                $.messager.alert('提示','必须选择一个订单才能编辑!');
-                return ;
-            }
-            if(ids.indexOf(',') > 0){
-                $.messager.alert('提示','只能选择一个订单!');
-                return ;
-            }
 
+    $(function () {
+        $('#addOrder').bind('click', function () {
             $(".tree-title:contains('新增订单')").parent().click();
+        });
 
-          /*  $("#itemEditWindow").window({
-                onLoad :function(){
-                    //回显数据
-                    var data = $("#itemList").datagrid("getSelections")[0];
-                    $("#itemeEditForm").form("load",data);
-                    TAOTAO.init({
-                        "pics" : data.image,
-                        "cid" : data.cid,
-                        fun:function(node){
-                            TAOTAO.changeItemParam(node, "itemeEditForm");
-                        }
-                    });
-                }
-            }).window("open");*/
-        }
-    },{
-        text:'删除',
-        iconCls:'icon-cancel',
-        handler:function(){
+        $('#deletOrder').bind('click', function () {
             var ids = getSelectionsIds();
             if(ids.length == 0){
                 $.messager.alert('提示','未选中订单!');
@@ -88,60 +80,37 @@
             }
             $.messager.confirm('确认','确定删除ID为 '+ids+' 的订单吗？',function(r){
                 if (r){
-                    var params = {"ids":ids};
-                    $.post("/rest/item/delete",params, function(data){
-                        if(data.status == 200){
+                    var params = {"id":ids};
+                    $.post("/order/deleteOrderById",params, function(data){
+                        if(data.status == "success"){
                             $.messager.alert('提示','删除订单成功!',undefined,function(){
-                                $("#itemList").datagrid("reload");
+                                $("#orderList").datagrid("reload");
                             });
                         }
                     });
                 }
             });
-        }
-    },'-',{
-        text:'下架',
-        iconCls:'icon-remove',
-        handler:function(){
-            var ids = getSelectionsIds();
-            if(ids.length == 0){
-                $.messager.alert('提示','未选中订单!');
-                return ;
-            }
-            $.messager.confirm('确认','确定下架ID为 '+ids+' 的订单吗？',function(r){
-                if (r){
-                    var params = {"ids":ids};
-                    $.post("/rest/item/instock",params, function(data){
-                        if(data.status == 200){
-                            $.messager.alert('提示','下架订单成功!',undefined,function(){
-                                $("#itemList").datagrid("reload");
-                            });
-                        }
-                    });
+        });
+
+        $('#orderSearch').bind('click', function () {
+            var beginTime = $('#fromDate').datebox('getValue');
+            var endTime = $('#endDate').datebox('getValue');
+
+            $('#orderList').datagrid(
+                {
+                    method:'get',
+                    pageSize : 5,//默认选择的分页是每页5行数据
+                    pageList : [ 5, 10, 15, 20 ],//可以选择的分页集合
+                    pageNumber: 1,
+                    nowrap : true,//设置为true，当数据长度超出列宽时将会自动截取
+                    striped : true,//设置为true将交替显示行背景。
+                    pagination : true,//分页
+                    rownumbers : true,//行数
+                    url:'/order/queryOrderByTime?beginTime='+beginTime+'&endTime='+endTime,
+                    loadMsg:'数据加载中......',
                 }
-            });
-        }
-    },{
-        text:'上架',
-        iconCls:'icon-remove',
-        handler:function(){
-            var ids = getSelectionsIds();
-            if(ids.length == 0){
-                $.messager.alert('提示','未选中订单!');
-                return ;
-            }
-            $.messager.confirm('确认','确定上架ID为 '+ids+' 的订单吗？',function(r){
-                if (r){
-                    var params = {"ids":ids};
-                    $.post("/rest/item/reshelf",params, function(data){
-                        if(data.status == 200){
-                            $.messager.alert('提示','上架订单成功!',undefined,function(){
-                                $("#itemList").datagrid("reload");
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    }];
+            );
+
+        })
+    });
 </script>

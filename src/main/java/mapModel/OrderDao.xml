@@ -27,7 +27,7 @@
 
     <insert id="addOrder" parameterType="model.Order.Order">
         insert into order_main
-        (line_id,adult_num,child_num,phone,price,total_price,note,create_time,status)
+        (line_id,adult_num,child_num,phone,price,totalPrice,note,create_time,status)
         values
         (#{lineId},#{adultNum},#{childNum},#{phone},#{price},#{totalPrice},#{note},#{createTime},#{status});
     </insert>
@@ -40,8 +40,48 @@
 
     <select id="queryAll" parameterType="java.util.HashMap" resultType="model.Order.Order" >
         SELECT *
-        FROM order_main
+        FROM order_main WHERE status = 0
         LIMIT #{offset},#{limit}
     </select>
+
+    <select id="getTotalCount" parameterType="int" resultType="int">
+        select
+        count(*)
+        from order_main
+        WHERE status=0
+    </select>
+
+    <select id="getTotalCountOfTime" parameterType="java.util.HashMap" resultType="int">
+        SELECT COUNT(*) FROM order_main
+        <where>
+            <if test="beginTime != null and beginTime !='' ">
+                create_time &gt; #{beginTime}
+            </if>
+
+            <if test="endTime != null and endTime != '' ">
+                AND create_time &lt; #{endTime}
+            </if>
+                AND status = 0;
+
+        </where>
+    </select>
+
+
+    <select id="queryOrderByTime" parameterType="java.util.HashMap" resultType="model.Order.Order">
+        SELECT * FROM order_main
+        <where>
+            <if test="beginTime != null and beginTime !='' ">
+                create_time &gt; #{beginTime}
+            </if>
+
+            <if test="endTime != null and endTime != '' ">
+                AND create_time &lt; #{endTime}
+            </if>
+            AND status = 0 LIMIT #{offset},#{limit};
+
+        </where>
+    </select>
+
+
 
 </mapper>

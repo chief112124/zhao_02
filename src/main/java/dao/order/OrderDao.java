@@ -17,8 +17,11 @@ public interface OrderDao {
 
     int queryOrderByType(int type);
 
-    List<Order> queryOrderByTypePage(HashMap<String, Integer> map);
+    List<Order> queryOrderByTypePage(HashMap<String, Object> map);
 
     List<Order> queryAll(HashMap<String, Integer> map);
 
+    int getTotalCount();
+    int getTotalCountOfTime(HashMap<String, Object> map);
+    List<Order> queryOrderByTime(HashMap<String, Object> map);
 }

@@ -78,8 +78,9 @@ public class ArticleService {
         result.setStatus(Result.SUCCESS);
         HashMap<String,Integer> map = new HashMap<String,Integer>();
         map.put("articleType" ,articleType);
-        map.put("limit", row);
-        map.put("offset",page);
+        int start = (page-1)*row;
+        map.put("limit", page);
+        map.put("offset",start);
         List<Article> articles = new ArrayList<Article>();
         try{
             int count = 0;
@@ -110,8 +111,9 @@ public class ArticleService {
         Result result = new Result();
         result.setStatus(Result.SUCCESS);
         HashMap<String,Integer> map = new HashMap<String,Integer>();
+        int start = (page-1)*rows;
         map.put("limit", rows);
-        map.put("offset",page);
+        map.put("offset", start);
         List<Article> articles = articleDao.queryAll(map);
         result.setRows(this.articleListVO(articles));
         result.setTotal(articles.size());
