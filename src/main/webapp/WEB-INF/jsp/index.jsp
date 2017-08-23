@@ -38,7 +38,8 @@
 			<li>
 				<span>路线管理</span>
 				<ul>
-					<li data-options="attributes:{'url':'test.jsp'}">待定</li>
+					<li data-options="attributes:{'url':'line-add'}">新增路线</li>
+					<li data-options="attributes:{'url':'line-list'}">路线列表</li>
 				</ul>
 			</li>
          </ul>
