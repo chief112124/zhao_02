@@ -24,7 +24,9 @@
         <div id="addArticle" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</div>
         <div id="editArticle" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</div>
         <div id="deletArticle" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">删除</div>
-         文章类型:
+        <div id="detailArticle" class="easyui-linkbutton" iconCls="icon-tip" plain="true">详情</div>
+
+        文章类型:
             <select id="articleType" class="easyui-combobox" style="width:100px">
                 <option value="0">全部</option>
                 <option value="1">情感</option>
@@ -37,6 +39,9 @@
     </div>
 </div>
 <div id="itemEditWindow" class="easyui-window" title="编辑文章" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/article-edit'" style="width:80%;height:80%;padding:10px;">
+</div>
+
+<div id="itemDetailWindow" class="easyui-window" title="文章详情" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/article-detail'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
@@ -126,6 +131,36 @@
                     });
                 }
             });
+        });
+
+        $('#detailArticle').bind('click', function () {
+            var ids = getSelectionsIds();
+            if(ids.length == 0){
+                $.messager.alert('提示','必须选择一个文章才能查看详情!');
+                return ;
+            }
+            if(ids.indexOf(',') > 0){
+                $.messager.alert('提示','只能选择一个文章!');
+                return ;
+            }
+
+            $("#itemDetailWindow").window({
+                onLoad :function(){
+                    //回显数据
+                    var data = $("#itemList").datagrid("getSelections")[0];
+                    $("#itemDetailForm").form("load",data);
+                    itemDetailEditor.html(data.content);
+                    TAOTAO.init({
+                        "title" : data.title,
+                        "articleType" : data.articleType,
+                        "sort": data.sort,
+                        fun:function(node){
+                            TAOTAO.changeItemParam(node, "itemDetailForm");
+                        }
+                    });
+                }
+            }).window("open");
+
         });
 
 
