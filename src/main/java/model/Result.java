@@ -65,4 +65,16 @@ public class Result {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "status='" + status + '\'' +
+                ", data=" + data +
+                ", count=" + count +
+                ", message='" + message + '\'' +
+                ", total=" + total +
+                ", rows=" + rows +
+                '}';
+    }
 }

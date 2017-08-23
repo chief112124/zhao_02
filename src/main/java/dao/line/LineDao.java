@@ -20,4 +20,10 @@ public interface LineDao {
     List<Line> queryLineAllPage(HashMap<String,Object> map);
 
     List<Line> queryLinesAll(HashMap<String,Object> map);
+
+    int getTotalCount();
+
+    int getTotalCountByTime(HashMap<String,Object> map);
+
+    List<HashMap<String, Object>> getAllLineIdAndTitle();
 }

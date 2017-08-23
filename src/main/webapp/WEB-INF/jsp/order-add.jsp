@@ -44,7 +44,7 @@
 
                 <tr>
                     <td>预定时间:</td>
-                    <td><input class="easyui-datetimebox" name="birthday"
+                    <td><input class="easyui-datetimebox" name="createTime"
                                data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">  </td>
                 </tr>
 

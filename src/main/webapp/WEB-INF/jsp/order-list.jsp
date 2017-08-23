@@ -108,6 +108,7 @@
                     rownumbers : true,//行数
                     url:'/order/queryOrderByTime?beginTime='+beginTime+'&endTime='+endTime,
                     loadMsg:'数据加载中......',
+
                 }
             );
 

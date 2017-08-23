@@ -40,6 +40,8 @@
 				<ul>
 					<li data-options="attributes:{'url':'line-add'}">新增路线</li>
 					<li data-options="attributes:{'url':'line-list'}">路线列表</li>
+					<li data-options="attributes:{'url':'day-add'}">新增日程</li>
+					<li data-options="attributes:{'url':'day-list'}">日程列表</li>
 				</ul>
 			</li>
          </ul>

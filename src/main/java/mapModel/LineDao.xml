@@ -15,10 +15,10 @@
         from line
         where status = 0
         <if test="beginTime != 0">
-            and go_time_stamp &gt; #{beginTime}
+            and go_time_stamp &gt;= #{beginTime}
         </if>
         <if test="endTime != 0">
-            and go_time_stamp &lt; #{endTime}
+            and go_time_stamp &lt;= #{endTime}
         </if>
         order by go_time_stamp asc
         limit #{offset},#{limit};
@@ -29,12 +29,7 @@
         *
         from line
         where status=0
-        <if test="beginTime != 0">
-            and go_time_stamp &gt; #{beginTime}
-        </if>
-        <if test="endTime != 0">
-            and go_time_stamp &lt; #{endTime}
-        </if>
+        limit #{offset},#{limit};
     </select>
 
     <insert id="addLine" useGeneratedKeys="true" keyProperty="id" parameterType="model.line.Line">
@@ -55,4 +50,30 @@
          line_name = #{lineName},line_content = #{lineContent},price = #{price},go_time_stamp = #{goTimeStamp}
         where id = #{id};
     </update>
+
+    <select id="getTotalCount" resultType="int">
+       select
+        count(*)
+        from line
+        where status=0
+    </select>
+
+    <select id="getTotalCountByTime" resultType="int">
+        select
+        count(*)
+        from line
+        where status=0
+        <if test="beginTime != 0">
+            and go_time_stamp &gt;= #{beginTime}
+        </if>
+        <if test="endTime != 0">
+            and go_time_stamp &lt;= #{endTime}
+        </if>
+        order by go_time_stamp asc
+    </select>
+
+    <select id="getAllLineIdAndTitle" resultType="java.util.HashMap">
+        SELECT  id, line_name as text  FROM line WHERE status = 0;
+    </select>
+
 </mapper>

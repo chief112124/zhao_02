@@ -3,6 +3,7 @@ package cotroller.line;
 import model.Result;
 import model.line.Line;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,13 +45,20 @@ public class LineC {
 
     @RequestMapping("/queryAllPage")
     @ResponseBody
-    public Result queryAllPage(int pageSize, int pageId, long beginTime,long endTime){
-        return lineService.queryAllPage(pageSize,pageId,beginTime,endTime);
+    public Result queryAllPage(int rows, int page,String beginTime, String endTime){
+        return lineService.queryAllPage(rows,page   ,beginTime,endTime);
     }
 
     @RequestMapping("/queryAll")
     @ResponseBody
-    public Result queryAll(long beginTime,long endTime){
-        return lineService.queryAll(beginTime,endTime);
+    public Result queryAll(int rows,int page){
+        return lineService.queryAll(rows, page);
+    }
+
+    @RequestMapping(value = "/lineIdAndTitles", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Result getLineIdAndTitle(){
+        Result rs = new Result();
+        rs = lineService.getLineIdAndTitle();
+        return rs;
     }
 }
