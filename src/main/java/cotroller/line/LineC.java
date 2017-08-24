@@ -56,6 +56,7 @@ public class LineC {
     }
 
     @RequestMapping(value = "/lineIdAndTitles", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Result getLineIdAndTitle(){
         Result rs = new Result();
         rs = lineService.getLineIdAndTitle();

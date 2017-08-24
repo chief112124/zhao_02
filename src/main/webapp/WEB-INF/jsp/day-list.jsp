@@ -6,8 +6,13 @@
     <thead>
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
-        <th data-options="field:'title',width:200">日程名称</th>
-        <th data-options="field:'typeStr',width:100">日程名称</th>
+        <th data-options="field:'id',width:200">日程ID</th>
+        <th data-options="field:'lineName',width:200">路线名称</th>
+        <th data-options="field:'dayNum',width:100">行程第几天</th>
+        <th data-options="field:'title',width:100">标题</th>
+        <th data-options="field:'meal',width:100">餐</th>
+        <th data-options="field:'hotel',width:100">宿</th>
+        <th data-options="field:'createTime',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建时间</th>
     </tr>
     </thead>
 </table>
@@ -17,9 +22,11 @@
         <div id="addday" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增日程</div>
         <div id="editday" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</div>
         <div id="deletday" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">删除</div>
-        开始时间: <input id="fromDate" class="easyui-datebox" style="width:120px">
-        截止时间: <input id="endDate" class="easyui-datebox" style="width:120px">
-        <a id="orderSearch" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+        路线名称: <input id ='lineIdInList' class="easyui-combobox" name="lineId" style="width:280px">
+
+        <a id="daySearch" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+
+
     </div>
 </div>
 <div id="dayEditWindow" class="easyui-window" title="编辑日程" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/day-edit'" style="width:80%;height:80%;padding:10px;">
@@ -41,10 +48,35 @@
             pagination : true,//分页
             rownumbers : true,//行数
             title:"日程列表",
-            url:'/day/queryAll',
+            url:'/lineDay/getAllDays',
             loadMsg:'数据加载中......',
         }
     );
+
+    $.ajax({
+        type: "GET",
+        url: "/line/lineIdAndTitles",
+        dataType: "json",
+        success: function(json) {
+            $('#lineIdInList').combobox({
+                data: json.rows,
+                valueField: 'id',
+                textField: 'text'
+            });
+        }
+    });
+/*
+    function getSelectionsIds(){
+        var dayList = $("#dayList");
+        var sels = dayList.datagrid("getSelections");
+        var ids = [];
+        for(var i in sels){
+            ids.push(sels[i].id);
+        }
+        ids = ids.join(",");
+        return ids;
+    }*/
+
 
     function getSelectionsIds(){
         var dayList = $("#dayList");
@@ -79,16 +111,9 @@
                 onLoad :function(){
                     //回显数据
                     var data = $("#dayList").datagrid("getSelections")[0];
-                    $("#dayeEditForm").form("load",data);
-                    dayEditEditor.html(data.content);
-                    TAOTAO.init({
-                        "title" : data.title,
-                        "dayType" : data.dayType,
-                        "sort": data.sort,
-                        fun:function(node){
-                            TAOTAO.changedayParam(node, "dayeEditForm");
-                        }
-                    });
+                    $("#dayEditForm").form("load",data);
+                    travelEditEditor.html(data.travel);
+                    lightPointEditEditor.html(data.linghtPoint);
                 }
             }).window("open");
         });
@@ -103,7 +128,7 @@
             $.messager.confirm('确认','确定删除ID为 '+ids+' 的日程吗？',function(r){
                 if (r){
                     var params = {"id":ids};
-                    $.post("/day/delete",params, function(data){
+                    $.post("/lineDay/delete",params, function(data){
                         if(data.status == "success"){
                             $.messager.alert('提示','删除日程成功!',undefined,function(){
                                 $("#dayList").datagrid("reload");
@@ -115,9 +140,8 @@
         });
 
 
-        $('#doSearch').bind('click', function () {
-           var selectValue =  $('#dayType').combobox('getValue');
-
+        $('#daySearch').bind('click', function () {
+           var selectValue =  $('#lineId').combobox('getValue');
             $('#dayList').datagrid(
                 {
                     singleSelect:true,
@@ -131,7 +155,7 @@
                     pagination : true,//分页
                     rownumbers : true,//行数
                     pageNumber: 1,
-                    url:'/day/querydayByType?dayType='+selectValue,
+                    url:'/lineDay/getDaysByLineId?lineId='+selectValue,
                     loadMsg:'数据加载中......',
                 }
             );

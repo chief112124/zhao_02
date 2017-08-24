@@ -77,6 +77,7 @@
             $.messager.alert('提示','表单还未填写完成!');
             return ;
         }
+        orderAddEditor.sync();
         $.post("/order/add",$("#orderAddForm").serialize(), function(data){
             if(data.status == "success"){
                 $.messager.alert('提示','新增文章成功!');

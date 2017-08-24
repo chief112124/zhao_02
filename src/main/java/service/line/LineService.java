@@ -184,6 +184,7 @@ public class LineService {
         try {
             idAndTitles = lineDao.getAllLineIdAndTitle();
             result.setRows(idAndTitles);
+            result.setStatus(Result.SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }

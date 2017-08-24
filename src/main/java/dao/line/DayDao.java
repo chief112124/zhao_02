@@ -2,6 +2,7 @@ package dao.line;
 
 import model.line.Day;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,4 +20,13 @@ public interface DayDao {
     void updateDaysById(Day day);
 
     Day queryOneById(int id);
+
+    int queryAllCount();
+
+    int queryDayCountByLineId(int lineId);
+
+    List<HashMap<String, Object>> queryAllDay (HashMap<String, Object> map);
+
+    List<HashMap<String, Object>> queryDayByLineId (HashMap<String, Object> map);
+
 }
