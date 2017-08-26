@@ -18,7 +18,7 @@
 						<option value="2">军事</option>
 						<option value="3">历史</option>
 						<option value="4">搞笑</option>
-						<option value="5">社会</option>
+						<option value="5">社会血</option>
 					</select>
 
 				</td>
