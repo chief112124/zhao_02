@@ -10,13 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageC {
     /*显示首页*/
-    @RequestMapping("/")
+    @RequestMapping("/backend")
     public String showIndex() {
         return "index";
+    }
+
+    /*显示首页*/
+    @RequestMapping("/")
+    public String showMain() {
+        return "main";
     }
 
     @RequestMapping("/{page}")
     public String page(@PathVariable String page) {
         return page;
     }
+
 }

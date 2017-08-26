@@ -1,0 +1,279 @@
+@charset "UTF-8";
+.list_cont_box .detail_title {
+    font-size: 30px;
+    font-weight: 700;
+}
+.detail_icon {
+    background: url("../images/detail_icon.png") no-repeat;
+}
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .detail_icon {
+        background: url(../images/detail_icon@2x.png) no-repeat;
+        -webkit-background-size: 258px auto;
+        background-size: 258px auto;
+    }
+}
+.photo_show .photo_num {
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    text-align: right;
+    color: #1581EA;
+}
+.photo_show .photo_num i {
+    display: inline-block;
+    width: 20px;
+    height: 17px;
+    background-position: -238px -61px;
+}
+.photo_show .photo_num em{
+    display: block;
+    float: right;
+    line-height: 18px;
+    font-size: 13px;
+    margin-left: 6px;
+}
+.photo_show img {
+    display: block;
+}
+.photo_show .little_pic img {
+    margin-bottom: 4px;
+}
+.photo_show .little_pic img:last-child {
+    margin-bottom: 0;
+}
+
+.tour_itinerary {
+    margin-top: 40px;
+}
+.itinerary_main {
+    float: left;
+    color: #000;
+}
+.itinerary_main > h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #000;
+    font-weight: 700;
+}
+.itinerary_main > h3 {
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: #1581EA;
+}
+ul.itinerary_list {
+    width: 622px;
+    text-align: justify;
+    -ms-text-justify: inter-ideograph;
+        text-justify: inter-ideograph;
+}
+ul.itinerary_list > li {
+    line-height: 23px;
+}
+
+.reserve_form {
+    float: right;
+    width:339px;
+    height:398px;
+    padding: 30px 40px 42px;
+    color: #1581EA;
+    font-size: 18px;
+    border: 1px solid #1581EA;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    box-sizing: border-box;
+}
+.reserve_form .price {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+.reserve_form .price > em {
+    font-size: 18px;
+}
+.reserve_form .time,
+.reserve_form .contact_way {
+    margin-bottom: 20px;
+}
+.reserve_button {
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    border: 1px solid #1581EA;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+.reserve_button > span {
+    float: left;
+    display: block;
+    width: 128px;
+    font-size: 24px;
+    font-weight: 700;
+}
+.reserve_button > a {
+    float: right;
+    display: block;
+    width: 127px;
+    font-size: 20px;
+    color: #FFF;
+    background-color: #1581EA;
+}
+.reserve_form .tel_bottom {
+    margin-top: 20px;
+    padding-top: 21px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 22px;
+    border-top: 1px solid #D8D8D8;
+}
+.citket_num {
+    margin-bottom: 20px;
+}
+.citket_num .left,.right {
+    width: 50%;
+    float: left;
+}
+.citket_num .left .text {
+    display: block;
+    float: left;
+    line-height: 30px;
+    margin-right: 12px;
+}
+.citket_num .left .text_right {
+    position: relative;
+    float: left;
+    width: 66px;
+    height:30px;
+    background-color: #1581EA;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+}
+.citket_num .left .text_right input{
+    width: 48px;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    border: none;
+    height: 26px;
+    text-align: center;
+    -webkit-border-radius:4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+.citket_num .left .text_right .btn{
+    position: relative;
+    display: block;
+    width:15px;
+    height:15px;
+    float: right;
+    cursor: pointer;
+}
+.citket_num .left .text_right .minus_btn:before {
+    position: absolute;
+    border-left: 1px solid #FFFFFF;
+    height: 7px;
+    content: '';
+    left:6px;
+    top:4px;
+}
+.citket_num .left .text_right .btn:after {
+    position: absolute;
+    border-bottom: 1px solid #FFFFFF;
+    width: 7px;
+    content: '';
+    left:3px;
+    top:7px;
+}
+.citket_num .left .text_right .line {
+    display: block;
+    width: 14px;
+    border-bottom: 1px solid #fff;
+    position: absolute;
+    right: 1px;
+    top:16px;
+}
+.citket_num .left input {
+    float: left;
+    width: 20px;
+}
+.contact_way > label {
+    float: left;
+    line-height: 30px;
+}
+.contact_way > input {
+    float: right;
+    width: 176px;
+    height: 30px;
+    border: 1px solid #1581EA;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    text-indent: 4px;
+}
+
+.schedule_list {
+    margin-top: 60px;
+}
+.item {
+    width: 622px;
+    margin-top: 40px;
+    padding-left: 83px;
+    text-align: justify;
+    -ms-text-justify: inter-ideograph;
+        text-justify: inter-ideograph;
+}
+.item:first-child {
+    margin-top: 0;
+}
+.destination {
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 700;
+}
+.destination > i {
+    position: absolute;
+    left: -83px;
+    top: -14px;
+    display: block;
+    width: 63px;
+    height: 82px;
+}
+.destination > i > em {
+    position: absolute;
+    left: 0;
+    bottom: 9px;
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    color: #1581EA;
+}
+.itinerary_list.list_icon li {
+    float: left;
+    margin-left: 30px;
+}
+.itinerary_list.list_icon li:first-child {
+    margin-left: 0;
+}
+.itinerary_list.list_icon i {
+    display: block;
+    float: left;
+    width: 27px;
+    height: 23px;
+    margin-right: 10px;
+}
+.itinerary_list.list_icon li:first-child i {
+    background-position: -103px -58px;
+}
+.itinerary_list.list_icon li:nth-child(2) i {
+    background-position: -170px -58px;
+}
+.item h4 {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: #1581EA;
+}

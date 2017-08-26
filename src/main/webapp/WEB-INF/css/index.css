@@ -1,0 +1,86 @@
+@charset "UTF-8";
+.index_main {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.index_main .main_tag {
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 88px;
+    margin-bottom: 50px;
+    justify-content: space-between;
+}
+.main_tag > li {
+    float: left;
+    text-align: center;
+}
+.main_tag > li i {
+    display: block;
+    width: 117px;
+    height: 116px;
+    margin: 0 auto 30px;
+    background: url("../images/main_tag_icon.png") no-repeat;
+}
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .main_tag > li i {
+        background: url(../images/main_tag_icon@2x.png) no-repeat;
+        -webkit-background-size: 945px auto;
+        background-size: 945px auto;
+    }
+}
+.main_tag > li i.icon_sincerity {
+    background-position: 0 0;
+}
+.main_tag > li i.icon_intimate {
+    background-position: -202px 0;
+}
+.main_tag > li i.icon_careful {
+    background-position: -415px 0;
+}
+.main_tag > li i.icon_confidence {
+    background-position: -623px 0;
+}
+.main_tag > li i.icon_mindful {
+    background-position: -828px 0;
+}
+
+.main_tag > li strong {
+    display: block;
+    margin-bottom: 11px;
+    font-size: 24px;
+}
+.main_tag > li p {
+    line-height: 22px;
+}
+
+.index_main > dl {
+    margin-bottom: 60px;
+}
+.index_main > dl > dt {
+    width: 604px;
+}
+.index_main dt img {
+    margin-bottom: 25px;
+}
+.index_main dt strong,
+.index_main dt span {
+    display: block;
+    margin-left: 10px;
+    padding-right: 100px;
+}
+.index_main dt strong {
+    font-size: 24px;
+    margin-bottom: 21px;
+}
+.index_main dt span {
+    font-size: 20px;
+    color: #999;
+}
+.index_main dt span > em {
+    float: right;
+}
+
+.index_main > dl > dd .content_item:first-child {
+    margin-bottom: 20px;
+}
