@@ -84,15 +84,7 @@
                     //回显数据
                     var data = $("#lineList").datagrid("getSelections")[0];
                     $("#lineEditForm").form("load",data);
-                    lineEditEditor.html(data.content);
-                    TAOTAO.init({
-                        "title" : data.title,
-                        "lineType" : data.lineType,
-                        "sort": data.sort,
-                        fun:function(node){
-                            TAOTAO.changelineParam(node, "lineeEditForm");
-                        }
-                    });
+
                 }
             }).window("open");
         });

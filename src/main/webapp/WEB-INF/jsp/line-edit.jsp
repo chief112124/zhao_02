@@ -4,29 +4,29 @@
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/ajaxfileupload.js"></script>
 <div style="padding:10px 10px 10px 10px">
-    <form id="lineAddForm" class="lineForm" method="post">
+    <form id="lineEditForm" class="lineForm" method="post">
         <table cellpadding="5" id="table">
             <tr>
                 <td>路线标题:</td>
-                <td><input class="easyui-textbox" type="text" name="lineName" style="width: 280px;"></input></td>
+                <td><input id="editTitle" class="easyui-textbox" type="text" name="lineName" style="width: 280px;"></input></td>
                 <td></td>
             </tr>
 
             <tr>
                 <td>价格:</td>
-                <td><input class="easyui-numberbox" type="number" name="price" data-options="min:1,max:99999999,precision:0" /></td>
+                <td><input id="editPrice" class="easyui-numberbox" type="number" name="price" data-options="min:1,max:99999999,precision:0" /></td>
                 <td></td>
             </tr>
 
             <tr>
                 <td>行程开始时间:</td>
-                <td><input class="easyui-datetimebox" name="goTimeStamp"
+                <td><input id="editBeginTime" class="easyui-datetimebox" name="goTimeStamp"
                            data-options="required:true,showSeconds:true" value="3/4/2010 2:3" style="width:150px">  </td>
                 <td></td>
             </tr>
             <tr>
                 <td>行程介绍:</td>
-                <td><input class="easyui-textbox" type="text" name="lineContent" data-options="multiline:true"  style="height: 100px; width: 280px"></input></td>
+                <td><input id="editContent" class="easyui-textbox" type="text" name="lineContent" data-options="multiline:true"  style="height: 100px; width: 280px"></input></td>
                 <td></td>
             </tr>
             <tr>
@@ -86,24 +86,22 @@
 
     function submitForm(){
         //有效性验证
-        if(!$('#lineAddForm').form('validate')){
+        if(!$('#lineEditForm').form('validate')){
             $.messager.alert('提示','表单还未填写完成!');
             return ;
         }
         //ajax的post方式提交表单
-        //$("#lineAddForm").serialize()将表单序列号为key-value形式的字符串
-        $.post("/line/add",$("#lineAddForm").serialize(), function(data){
+        //$("#lineEditForm").serialize()将表单序列号为key-value形式的字符串
+        $.post("/line/update",$("#lineEditForm").serialize(), function(data){
             if(data.status == "success"){
                 $.messager.alert('提示','新增路线成功!');
-                $('#lineAddForm').form('reset');
-                lineAddEditor.html('');
+                $('#lineEditForm').form('reset');
             }
         });
     }
 
     function clearForm(){
-        $('#lineAddForm').form('reset');
-        lineAddEditor.html('');
+        $('#lineEditForm').form('reset');
     }
 
     function deleteOtherImgTr(obj){
@@ -153,7 +151,7 @@
             success:function(data){
                 if(data.status == 'success'){
                     var imgIdStr = obj.getAttribute("id") + 'Img';
-                    console.log(data.url);
+                    console.log(data.data);
 //                    document.getElementById(imgIdStr).src = data.data;
                     document.getElementById(imgIdStr).src = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4267222417,1017407570&fm=200&gp=0.jpg";
                     if(document.getElementById(imgIdStr).name == "otherImg"){

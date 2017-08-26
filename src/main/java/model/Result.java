@@ -18,6 +18,17 @@ public class Result {
     private int total;
     private Object rows;
 
+    /*·µ»ØµÄURL*/
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public int getTotal() {
         return total;
     }
