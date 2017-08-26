@@ -18,9 +18,9 @@
 </head>
 <body>
     <div class="main_menu">
-        <a href="index.html"><img src="/images/logo.png" alt="北京中贸国际商旅" width="74" height="74"></a>
+        <a href="main"><img src="/images/logo.png" alt="北京中贸国际商旅" width="74" height="74"></a>
         <ul class="clearfix">
-            <li><a href="index.html">行程集锦</a></li>
+            <li><a href="main">行程集锦</a></li>
             <li><a class="current" href="articleList">惠玩食宿行</a></li>
             <li><a class="current" href="articleList">行摄北非</a></li>
             <li><a class="current" href="articleList">贴心的话</a></li>
@@ -31,25 +31,25 @@
     <div class="list_cont_box clearfix">
         <ul class="cont_main" id="cont_main_line">
             <li>
-                <a href="#">
+                <a href="articleDetail">
                     <img src="/images/article_img4.png" alt="" width="635" height="386">
                     <p><strong class="color_blue">“行之悦旅行” 尽在北非</strong><em>2017-08-10   15:26</em></p>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="articleDetail">
                     <img src="/images/article_img4.png" alt="" width="635" height="386">
                     <p><strong class="color_blue">“行之悦旅行” 尽在北非</strong><em>2017-08-10   15:26</em></p>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="articleDetail">
                     <img src="/images/article_img4.png" alt="" width="635" height="386">
                     <p><strong class="color_blue">“行之悦旅行” 尽在北非</strong><em>2017-08-10   15:26</em></p>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="articleDetail">
                     <img src="/images/article_img4.png" alt="" width="635" height="386">
                     <p><strong class="color_blue">“行之悦旅行” 尽在北非</strong><em>2017-08-10   15:26</em></p>
                 </a>
@@ -74,7 +74,7 @@
         </fieldset>
         <ul class="clearfix">
             <li class="content_item fl">
-                <a href="#">
+                <a href="articleDetail">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
@@ -83,7 +83,7 @@
                 </a>
             </li>
             <li class="content_item fl">
-                <a href="#">
+                <a href="articleDetail">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
@@ -92,7 +92,7 @@
                 </a>
             </li>
             <li class="content_item fl">
-                <a href="#">
+                <a href="articleDetail">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>

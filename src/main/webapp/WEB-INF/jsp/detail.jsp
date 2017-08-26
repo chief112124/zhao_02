@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="main_menu">
-        <a href="index.html"><img src="/images/logo.png" alt="北京中贸国际商旅" width="74" height="74"></a>
+        <a href="main"><img src="/images/logo.png" alt="北京中贸国际商旅" width="74" height="74"></a>
         <ul class="clearfix">
             <li><a class="current" href="index.html">行程集锦</a></li>
             <li><a href="articleList">惠玩食宿行</a></li>
