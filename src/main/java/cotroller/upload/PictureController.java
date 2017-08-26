@@ -1,6 +1,7 @@
 package cotroller.upload;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,16 +13,14 @@ import java.util.Map;
 /**
  * Created by Yang Qinfeng on 2017/8/26.
  */
+@Controller
+@RequestMapping("/pic")
 public class PictureController {
-
-    @Autowired
-    private PictureService pictureService;
-
-    @RequestMapping("/pic/upload")
+    @RequestMapping("/upload")
     @ResponseBody
     public String pictureUpload(MultipartFile uploadFile) {
+        PictureService pictureService = new PictureService();
         Map result = pictureService.uploadPicture(uploadFile);
-        //为了保证功能的兼容性，需要把Result转换成json格式的字符串。
         String json = JsonUtils.objectToJson(result);
         return json;
     }
