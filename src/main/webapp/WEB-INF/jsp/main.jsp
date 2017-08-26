@@ -20,7 +20,7 @@
     <div class="main_menu">
         <a href="main"><img src="/images/logo.png" alt="北京中贸国际商旅" width="74" height="74"></a>
         <ul class="clearfix">
-            <li><a class="current" href="index.html">行程集锦</a></li>
+            <li><a class="current" href="main">行程集锦</a></li>
             <li><a href="articleList">惠玩食宿行</a></li>
             <li><a href="articleList">行摄北非</a></li>
             <li><a href="articleList">贴心的话</a></li>
@@ -67,7 +67,7 @@
     </ul>
     <dl class="clearfix">
         <dt class="fl">
-            <a href="#">
+            <a href="articleDetail">
                 <img src="/images/article_img1.png" alt="" width="604" height="418">
                 <strong>“行之悦旅行” 摩洛哥色彩国度探秘14日之旅</strong>
                 <span>预计出行时间：2017年5月10日<em class="color_blue">¥16,800元／人</em></span>
@@ -75,7 +75,7 @@
         </dt>
         <dd class="fr">
             <div class="content_item">
-                <a href="#">
+                <a href="articleDetail">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
