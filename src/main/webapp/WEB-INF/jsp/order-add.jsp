@@ -80,9 +80,9 @@
         orderAddEditor.sync();
         $.post("/order/add",$("#orderAddForm").serialize(), function(data){
             if(data.status == "success"){
-                $.messager.alert('提示','新增文章成功!');
+                $.messager.alert('提示','新增订单成功!');
             } else {
-                $.messager.alert('提示', '新增文章失败!')
+                $.messager.alert('提示', '新增订单失败!')
             }
         });
     }

@@ -26,6 +26,12 @@
 	            <td><input class="easyui-textbox" type="text" name="sort" data-options="min:1,max:99999999,precision:2" />
 	            </td>
 	        </tr>
+			<tr>
+				<td>封面图:</td>
+				<td><input class="easyui-filebox" type="file" name="file"  />
+				</td>
+			</tr>
+
 	        <tr>
 	            <td>文章内容:</td>
 	            <td>

@@ -7,8 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.line.LineService;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by as749 on 2017/8/17.
@@ -19,9 +24,18 @@ public class LineC {
     @Autowired
     private LineService lineService;
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Result addLine(@RequestBody Line line){
+    public Result addLine(String lineName, String price, String goTimeStamp, String lineContent) throws ParseException {
+        Line line = new Line();
+        line.setLineName(lineName);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Date createTime = new Date();
+        line.setPrice(Double.parseDouble(price));
+        line.setGoTimeStamp(simpleDateFormat.parse(goTimeStamp).getTime());
+        line.setLineContent(lineContent);
         return lineService.addLine(line);
     }
 

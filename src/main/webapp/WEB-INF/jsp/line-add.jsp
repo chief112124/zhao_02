@@ -8,19 +8,9 @@
         <table cellpadding="5" id="table">
             <tr>
                 <td>路线标题:</td>
-                <td><input class="easyui-textbox" type="text" name="title" style="width: 280px;"></input></td>
+                <td><input class="easyui-textbox" type="text" name="lineName" style="width: 280px;"></input></td>
                 <td></td>
             </tr>
-            <%--<tr>
-                <td >图片1:
-                    <td><input class="easyui-filebox" name="img1"  style="width: 280px;"  data-options="prompt:'Choose a file...'"></td>
-                </td>
-            </tr>
-            <tr>
-                <td >图片2:
-                <td><input class="easyui-filebox" name="img2"  style="width: 280px;" data-options="prompt:'Choose a file...'"></td>
-                </td>
-            </tr>--%>
 
             <tr>
                 <td>价格:</td>
@@ -30,13 +20,13 @@
 
             <tr>
                 <td>行程开始时间:</td>
-                <td><input class="easyui-datetimebox" name="createTime"
+                <td><input class="easyui-datetimebox" name="goTimeStamp"
                            data-options="required:true,showSeconds:true" value="3/4/2010 2:3" style="width:150px">  </td>
                 <td></td>
             </tr>
             <tr>
                 <td>行程介绍:</td>
-                <td><input class="easyui-textbox" type="text" name="title" data-options="multiline:true"  style="height: 100px; width: 280px"></input></td>
+                <td><input class="easyui-textbox" type="text" name="lineContent" data-options="multiline:true"  style="height: 100px; width: 280px"></input></td>
                 <td></td>
             </tr>
             <tr>
@@ -44,7 +34,7 @@
                     大banner  :
                 </td>
                 <td >
-                   <input class="" name="img"  style="width: 280px;" type="file" id="bigBanner"><input type="button" onclick="javascript:upload(this)" id="uploadBigBanner" value="上传"/>
+                    <input class="" name="img"  style="width: 280px;" type="file" id="bigBanner"><input type="button" onclick="javascript:upload(this)" id="uploadBigBanner" value="上传"/>
                 </td>
                 <td>
                     <img style="display: block" id="uploadBigBannerImg" width="100px" src=""/>
@@ -77,7 +67,7 @@
                     其他图片:
                 </td>
                 <td >
-                    <input class="" name="img" id="other"  style="width: 280px;" type="file">
+                    <input class="" name="img" id="other"  style="width: 280px;" type="file" multiple="multiple">
                     <input type="button" id="uploadOther" onclick="javascript:upload(this)" value="上传"/>
                 </td>
                 <td>
@@ -93,25 +83,18 @@
     </div>
 </div>
 <script type="text/javascript">
-    var lineAddEditor ;
-    //页面初始化完毕后执行此方法
-    $(function(){
-        //创建富文本编辑器
-        lineAddEditor = KindEditor.create("#lineAddForm [name=content]", TT.kingEditorParams)
-    });
-    //提交表单
+
     function submitForm(){
         //有效性验证
         if(!$('#lineAddForm').form('validate')){
             $.messager.alert('提示','表单还未填写完成!');
             return ;
         }
-        lineAddEditor.sync();
         //ajax的post方式提交表单
         //$("#lineAddForm").serialize()将表单序列号为key-value形式的字符串
-        $.post("/article/add",$("#lineAddForm").serialize(), function(data){
+        $.post("/line/add",$("#lineAddForm").serialize(), function(data){
             if(data.status == "success"){
-                $.messager.alert('提示','新增文章成功!');
+                $.messager.alert('提示','新增路线成功!');
                 $('#lineAddForm').form('reset');
                 lineAddEditor.html('');
             }

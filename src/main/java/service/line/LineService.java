@@ -33,7 +33,8 @@ public class LineService {
         result.setStatus(Result.SUCCESS);
         line.setCreateTime(new Date().getTime());
         line.setStatus(0);
-        try{
+        lineDao.addLine(line);
+   /*     try{
             List<LineImg> lineImgs = line.getLineImgs();
             if(lineImgs == null || lineImgs.size() < 3){
                 result.setStatus(Result.INCORRECT);
@@ -48,7 +49,7 @@ public class LineService {
         }catch (Exception e){
             result.setStatus(Result.INCORRECT);
             result.setMessage("添加失败！");
-        }
+        }*/
         return result;
     }
 
