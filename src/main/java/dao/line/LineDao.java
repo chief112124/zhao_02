@@ -26,4 +26,9 @@ public interface LineDao {
     int getTotalCountByTime(HashMap<String,Object> map);
 
     List<HashMap<String, Object>> getAllLineIdAndTitle();
+
+    List<Line> queryOtherThreeById(int id);
+
+
+    List<Line> querySixLine();
 }

@@ -7,7 +7,7 @@ public class LineImg {
     private int id;
     private int lineId;  //路线id
     private String url;  //链接
-    private int sortNum; //序号
+    private int imgType; //序号
     private int status;  //状态
 
     public int getId() {
@@ -34,12 +34,12 @@ public class LineImg {
         this.url = url;
     }
 
-    public int getSortNum() {
-        return sortNum;
+    public int getImgType() {
+        return imgType;
     }
 
-    public void setSortNum(int sortNum) {
-        this.sortNum = sortNum;
+    public void setImgType(int imgType) {
+        this.imgType = imgType;
     }
 
     public int getStatus() {

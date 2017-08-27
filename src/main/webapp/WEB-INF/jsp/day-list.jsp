@@ -34,6 +34,7 @@
 <script>
 
     /*默认加载全部的数据*/
+    alert(1111);
     $('#dayList').datagrid(
         {
             singleSelect:true,
@@ -52,7 +53,7 @@
             loadMsg:'数据加载中......',
         }
     );
-
+    alert(2222);
     $.ajax({
         type: "GET",
         url: "/line/lineIdAndTitles",
@@ -65,6 +66,7 @@
             });
         }
     });
+    alert(333);
 /*
     function getSelectionsIds(){
         var dayList = $("#dayList");
@@ -141,6 +143,7 @@
 
 
         $('#daySearch').bind('click', function () {
+            alert(1111);
            var selectValue =  $('#lineId').combobox('getValue');
             $('#dayList').datagrid(
                 {
@@ -159,7 +162,7 @@
                     loadMsg:'数据加载中......',
                 }
             );
-
+            alert(2222);
         })
     })
 

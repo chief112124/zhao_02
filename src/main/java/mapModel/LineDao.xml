@@ -76,4 +76,18 @@
         SELECT  id, line_name as text  FROM line WHERE status = 0;
     </select>
 
+    <select id="queryOtherThreeById" parameterType="int"  resultType="model.line.Line">
+        select
+        *
+        from line
+        where id &lt;&gt; #{id};
+    </select>
+
+    <select id="querySixLine"  resultType="model.line.Line">
+        select
+        *
+        from line
+        order by id desc limit 6
+    </select>
+
 </mapper>

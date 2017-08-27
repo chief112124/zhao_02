@@ -26,16 +26,7 @@ public class LineC {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Result addLine(String lineName, String price, String goTimeStamp, String lineContent) throws ParseException {
-        Line line = new Line();
-        line.setLineName(lineName);
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        Date createTime = new Date();
-        line.setPrice(Double.parseDouble(price));
-        line.setGoTimeStamp(simpleDateFormat.parse(goTimeStamp).getTime());
-        line.setLineContent(lineContent);
+    public Result addLine(@RequestBody Line line) throws ParseException {
         return lineService.addLine(line);
     }
 
@@ -75,5 +66,17 @@ public class LineC {
         Result rs = new Result();
         rs = lineService.getLineIdAndTitle();
         return rs;
+    }
+
+    @RequestMapping("/queryOtherThreeById")
+    @ResponseBody
+    public Result queryOtherThreeById(int id){
+        return lineService.queryOtherThreeById(id);
+    }
+
+    @RequestMapping("/querySixLine")
+    @ResponseBody
+    public Result querySixLine(){
+        return lineService.querySixLine();
     }
 }

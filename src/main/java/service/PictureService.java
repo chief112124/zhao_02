@@ -1,3 +1,4 @@
+/*
 package service;
 
 import org.joda.time.DateTime;
@@ -10,9 +11,11 @@ import utils.IDUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+*/
 /**
  * Created by Yang Qinfeng on 2017/8/26.
- */
+ *//*
+
 @Service
 public class PictureService {
 
@@ -55,3 +58,4 @@ public class PictureService {
     }
 
 }
+*/
