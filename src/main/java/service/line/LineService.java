@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by as749 on 2017/8/17.
@@ -33,23 +31,17 @@ public class LineService {
         result.setStatus(Result.SUCCESS);
         line.setCreateTime(new Date().getTime());
         line.setStatus(0);
-        lineDao.addLine(line);
-   /*     try{
-            List<LineImg> lineImgs = line.getLineImgs();
-            if(lineImgs == null || lineImgs.size() < 3){
-                result.setStatus(Result.INCORRECT);
-                result.setMessage("图片数量不足！");
-                return result;
-            }
-            int lineId = lineDao.addLine(line);
-            for(LineImg lineImg:lineImgs){
-                lineImg.setLineId(lineId);
-                lineImgDao.addImg(lineImg);
-            }
-        }catch (Exception e){
+        List<LineImg> lineImgs = line.getLineImgs();
+        if(lineImgs == null || lineImgs.size() < 3){
             result.setStatus(Result.INCORRECT);
-            result.setMessage("添加失败！");
-        }*/
+            result.setMessage("图片数量不足！");
+            return result;
+        }
+        lineDao.addLine(line);
+        for(LineImg lineImg:lineImgs){
+            lineImg.setLineId(line.getId());
+            lineImgDao.addImg(lineImg);
+        }
         return result;
     }
 
@@ -189,6 +181,51 @@ public class LineService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return result;
+    }
+
+    public Result queryOtherThreeById(int id) {
+        Result result = new Result();
+        result.setStatus(Result.SUCCESS);
+        List<Line> returnLines = new ArrayList<>();
+        List<Line> lines = lineDao.queryOtherThreeById(id);
+        Random random = new Random();
+        boolean flag = true;
+        List<Integer> nums = new ArrayList<>();
+        while(flag){
+            int num = random.nextInt(lines.size());
+            if(nums.size() == 0){
+                nums.add(num);
+            }else {
+                boolean has = false;
+                for (Integer i : nums){
+                    if(i == num){
+                        has = true;
+                        break;
+                    }
+                }
+                if(!has){
+                    nums.add(num);
+                }
+            }
+            if(nums.size() == 3){
+                flag = false;
+            }
+        }
+        for(Integer i : nums){
+            List<LineImg> imgs = lineImgDao.getLineImgByLineId(lines.get(i).getId());
+            lines.get(i).setLineImgs(imgs);
+            returnLines.add(lines.get(i));
+        }
+        result.setData(returnLines);
+        return result;
+    }
+
+    public Result querySixLine() {
+        Result result = new Result();
+        result.setStatus(Result.SUCCESS);
+        List<Line> lines = lineDao.querySixLine();
+        result.setData(lines);
         return result;
     }
 }

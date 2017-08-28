@@ -1,3 +1,4 @@
+/*
 package cotroller.upload;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import utils.JsonUtils;
 
 import java.util.Map;
 
+*/
 /**
  * Created by Yang Qinfeng on 2017/8/26.
- */
+ *//*
+
 @Controller
 @RequestMapping("/pic")
 public class PictureController {
@@ -25,3 +28,4 @@ public class PictureController {
         return json;
     }
 }
+*/

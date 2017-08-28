@@ -6,12 +6,21 @@ package model.artical;
 public class Article {
     private int id;
     private String title;  //文章标题
+    private String img;
     private String content;  //文章内容
     private int articleType;   //文章类型
     private int sort;   //文章顺序
     private long createTime; //创建时间
     private long updateTime; //修改时间
     private int status;  //文章状态
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     /*VO属性*/
     private String typeStr;

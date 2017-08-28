@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.util.Date;
 
 /**
  * Created by as749 on 2017/8/24.
@@ -21,15 +23,13 @@ import javax.servlet.http.HttpServletResponse;
 public class FileController {
     @ResponseBody
     @RequestMapping(value = "/upload" ,method = RequestMethod.POST)
-    public Result upload(@RequestParam(value="dir",required=false) MultipartFile img, HttpServletRequest request,HttpServletResponse response) throws Exception{
+    public Result upload(@RequestParam(value="img",required=false) MultipartFile img, HttpServletRequest request,HttpServletResponse response) throws Exception{
         Result result = new Result();
         result.setStatus(Result.SUCCESS);
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        MultipartFile multipartFile = img;
-    /*    String path = "D:/img";
-        String fileName = new Date().getTime()+".jpg";*/
-/*        File targetFile = new File(path, fileName);
+//        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        String path = "D:/img";
+        String fileName = new Date().getTime()+".jpg";
+        File targetFile = new File(path, fileName);
         if(!targetFile.exists()){
             targetFile.mkdirs();
         }
@@ -38,9 +38,8 @@ public class FileController {
             img.transferTo(targetFile);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
-       /* result.setUrl(path+"/"+fileName);*/
-
+        }
+        result.setUrl(path+"/"+fileName);
         return result;
     }
 

@@ -4,9 +4,9 @@
 
     <insert id="addImg" parameterType="model.line.LineImg">
         insert into line_img
-        (line_id,sort_num,url,status)
+        (line_id,img_type,url,status)
         values
-        (#{lineId},#{sortNum},#{url},#{status});
+        (#{lineId},#{imgType},#{url},#{status});
     </insert>
 
     <delete id="deleteImgBylineId" parameterType="int">
@@ -19,6 +19,6 @@
         select
         *
         from line_img
-        where line_id=#{lineId} order by sort_num asc
+        where line_id=#{lineId}
     </select>
 </mapper>

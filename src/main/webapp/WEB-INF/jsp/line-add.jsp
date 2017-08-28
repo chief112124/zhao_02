@@ -4,29 +4,29 @@
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/ajaxfileupload.js"></script>
 <div style="padding:10px 10px 10px 10px">
-    <form id="lineAddForm" class="lineForm" method="post">
+    <%--<form id="lineAddForm" class="lineForm" method="post">--%>
         <table cellpadding="5" id="table">
             <tr>
                 <td>路线标题:</td>
-                <td><input class="easyui-textbox" type="text" name="lineName" style="width: 280px;"></input></td>
+                <td><input class="" type="text" id="lineName" name="lineName" style="width: 280px;"></input></td>
                 <td></td>
             </tr>
 
             <tr>
                 <td>价格:</td>
-                <td><input class="easyui-numberbox" type="number" name="price" data-options="min:1,max:99999999,precision:0" /></td>
+                <td><input class="" type="number" id="price" name="price" data-options="min:1,max:99999999,precision:0" /></td>
                 <td></td>
             </tr>
 
             <tr>
                 <td>行程开始时间:</td>
-                <td><input class="easyui-datetimebox" name="goTimeStamp"
+                <td><input class="easyui-datetimebox" name="goTimeStamp" id="goTimeStamp"
                            data-options="required:true,showSeconds:true" value="3/4/2010 2:3" style="width:150px">  </td>
                 <td></td>
             </tr>
             <tr>
                 <td>行程介绍:</td>
-                <td><input class="easyui-textbox" type="text" name="lineContent" data-options="multiline:true"  style="height: 100px; width: 280px"></input></td>
+                <td><textarea class="" id="lineContent" type="text" name="lineContent" data-options="multiline:true"  style="height: 100px; width: 280px"></textarea></td>
                 <td></td>
             </tr>
             <tr>
@@ -56,10 +56,10 @@
                     小banner2:
                 </td>
                 <td >
-                    <input class="" name="img" id="smallBanner2" style="width: 280px;" type="file"><input type="button" onclick="javascript:upload(this)" id="uoloadSmallBanner2" value="上传"/>
+                    <input class="" name="img" id="smallBanner2" style="width: 280px;" type="file"><input type="button" onclick="javascript:upload(this)" id="uploadSmallBanner2" value="上传"/>
                 </td>
                 <td>
-                    <img style="display: block" id="uoloadSmallBanner2Img" width="100px" src=""/>
+                    <img style="display: block" id="uploadSmallBanner2Img" width="100px" src=""/>
                 </td>
             </tr>
             <tr>
@@ -73,19 +73,18 @@
                 <td>
                     <img id="uploadOtherImg" name="otherImg" style="" width="100px" src=""/>
                 </td>
-                <td></td>
             </tr>
         </table>
-    </form>
+    <%--</form>--%>
     <div style="padding:5px">
         <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+        <%--<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>--%>
     </div>
 </div>
 <script type="text/javascript">
 
     function submitForm(){
-        //有效性验证
+        /*//有效性验证
         if(!$('#lineAddForm').form('validate')){
             $.messager.alert('提示','表单还未填写完成!');
             return ;
@@ -98,7 +97,42 @@
                 $('#lineAddForm').form('reset');
                 lineAddEditor.html('');
             }
-        });
+        });*/
+        var uploadBigBannerImg = $("#uploadBigBannerImg").attr("src");
+        var uploadSmallBanner1Img = $("#uploadSmallBanner1Img").attr("src");
+        var uploadSmallBanner2Img = $("#uploadSmallBanner2Img").attr("src");
+        var lineName = $("#lineName").val();
+        var goTimeStamp = $("#goTimeStamp").val();
+        var lineContent = $("#lineContent").val();
+        var price = $("#price").val();
+        if(uploadBigBannerImg == "" || uploadSmallBanner1Img == "" || uploadSmallBanner2Img == "" || lineName == "" || goTimeStamp == "" || lineContent == "" || price == "" ){
+            alert("信息不全！")
+            return;
+        }
+        var imgs = [];
+        var imgsObject = document.getElementsByName("otherImg");
+        for(var i=0;i<imgsObject.length-1;i++){
+            imgs.push({imgType:3,url:imgsObject[i].src,status:0})
+        }
+        imgs.push({imgType:1,url:uploadBigBannerImg,status:0})
+        imgs.push({imgType:2,url:uploadSmallBanner1Img,status:0})
+        imgs.push({imgType:2,url:uploadSmallBanner2Img,status:0})
+        var data = {lineName:lineName,lineContent:lineContent,goTimeStamp:goTimeStamp,price:price,lineImgs:imgs}
+        $.ajax({
+            url : "/line/add",
+            type : "POST",
+            contentType: "application/json;charset=utf-8",
+            data : JSON.stringify(data),
+            dataType : "json",
+            success : function(result) {
+            if (result.status == "success") {
+                    alert("添加成功！");
+                }
+            },
+            error:function(msg){
+                $(".notice").html('Error:'+msg);
+            }
+        })
     }
 
     function clearForm(){
@@ -153,7 +187,6 @@
             success:function(data){
                 if(data.status == 'success'){
                     var imgIdStr = obj.getAttribute("id") + 'Img';
-                    console.log(data.url);
 //                    document.getElementById(imgIdStr).src = data.data;
                     document.getElementById(imgIdStr).src = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4267222417,1017407570&fm=200&gp=0.jpg";
                     if(document.getElementById(imgIdStr).name == "otherImg"){

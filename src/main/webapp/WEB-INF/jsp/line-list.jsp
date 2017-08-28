@@ -82,11 +82,12 @@
             $("#lineEditWindow").window({
                 onLoad :function(){
                     //回显数据
-                    var data = $("#lineList").datagrid("getSelections")[0];
+//                    var data = $("#lineList").datagrid("getSelections")[0];*/
+                    var data = {lineId:ids};
                     $("#lineEditForm").form("load",data);
-
                 }
             }).window("open");
+//            location.href("/line-edit.jsp?lineId=13")
         });
 
         /*删除路线*/

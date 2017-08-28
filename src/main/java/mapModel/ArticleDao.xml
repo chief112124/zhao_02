@@ -33,9 +33,9 @@
 
     <insert id="insertArticle" parameterType="model.artical.Article">
         insert into article
-        (title,content,article_type,sort,create_time,update_time,status)
+        (title,content,article_type,sort,create_time,update_time,status,img)
         values
-        (#{title},#{content},#{articleType},#{sort},#{createTime},#{updateTime},#{status});
+        (#{title},#{content},#{articleType},#{sort},#{createTime},#{updateTime},#{status},#{img});
     </insert>
 
     <delete id="deleteArticleById" parameterType="int">
@@ -46,7 +46,7 @@
 
     <update id="updateArticleById" parameterType="model.artical.Article">
         update article set
-        title=#{title},content=#{content},article_type=#{articleType},sort=#{sort},update_time=#{updateTime}
+        title=#{title},content=#{content},article_type=#{articleType},sort=#{sort},update_time=#{updateTime},img=#{}
         where id = #{id};
     </update>
 
