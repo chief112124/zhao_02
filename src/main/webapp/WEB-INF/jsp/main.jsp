@@ -66,60 +66,60 @@
         </li>
     </ul>
     <dl class="clearfix">
-        <dt class="fl">
-            <a href="articleDetail">
+        <dt class="fl" id="line1">
+            <%--<a href="detail">
                 <img src="/images/article_img1.png" alt="" width="604" height="418">
                 <strong>“行之悦旅行” 摩洛哥色彩国度探秘14日之旅</strong>
                 <span>预计出行时间：2017年5月10日<em class="color_blue">¥16,800元／人</em></span>
-            </a>
+            </a>--%>
         </dt>
         <dd class="fr">
-            <div class="content_item">
-                <a href="articleDetail">
+            <div class="content_item" id="line2">
+                <%--<a href="articleDetail">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
                     </div>
                     <p>预计出行时间：2017年5月10日<em class="color_blue fr">¥16,800元／人</em></p>
-                </a>
+                </a>--%>
             </div>
-            <div class="content_item">
-                <a href="#">
+            <div class="content_item" id="line3">
+                <%--<a href="#">
                     <div class="img_box">
                         <img src="/images/article_img3.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
                     </div>
                     <p>预计出行时间：2017年5月10日<em class="color_blue fr">¥16,800元／人</em></p>
-                </a>
+                </a>--%>
             </div>
         </dd>
     </dl>
     <dl class="clearfix">
-        <dt class="fr">
-            <a href="#">
+        <dt class="fr" id="line4">
+            <%--<a href="#">
                 <img src="/images/article_img1.png" alt="" width="604" height="418">
                 <strong>“行之悦旅行” 摩洛哥色彩国度探秘14日之旅</strong>
                 <span>预计出行时间：2017年5月10日<em class="color_blue">¥16,800元／人</em></span>
-            </a>
+            </a>--%>
         </dt>
-        <dd class="fl">
-            <div class="content_item">
-                <a href="#">
+        <dd class="fl" >
+            <div class="content_item" id="line5">
+                <%--<a href="#">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
                     </div>
                     <p>预计出行时间：2017年5月10日<em class="color_blue fr">¥16,800元／人</em></p>
-                </a>
+                </a>--%>
             </div>
-            <div class="content_item">
-                <a href="#">
+            <div class="content_item" id="line6">
+                <%--<a href="#" >
                     <div class="img_box">
                         <img src="/images/article_img3.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
                     </div>
                     <p>预计出行时间：2017年5月10日<em class="color_blue fr">¥16,800元／人</em></p>
-                </a>
+                </a>--%>
             </div>
         </dd>
     </dl>
@@ -141,5 +141,90 @@
         </ul>
     </div>
 </div>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    $.ajax({
+        type: "GET",
+        url: "/line/querySixLine",
+        dataType: "json",
+        success: function(data) {
+            if(data.status == "success"){
+                console.log(data.data);
+                appendLineList(data.data);
+            }
+        }
+    });
+    function appendLineList(lines){
+        var line1Content1 = '<a href="detail?id='+lines[0].id+'">'+
+        '<img src="'+getAppendImgSrc(lines[0],1)+'" alt="" width="604" height="418">'+
+        '<strong>'+lines[0].lineName+'</strong>'+
+        '<span>预计出行时间：'+getAppendTime(lines[0].goTimeStamp)+'<em class="color_blue">¥'+lines[0].price+'元／人</em></span>'+
+        '</a>';
+        $("#line1").append(line1Content1);
+
+        var line1Content2 = '<a href="detail?id='+lines[1].id+'">'+
+            '<div class="img_box">'+
+            '<img src="'+getAppendImgSrc(lines[1],2)+'" alt="'+lines[1].lineName+'" width="378" height="214">'+
+            '<div class="mask"><p>'+lines[1].lineName+'</p></div>'+
+        '</div>'+
+        '<p>预计出行时间：'+getAppendTime(lines[1].goTimeStamp)+'<em class="color_blue fr">¥'+lines[1].price+'元／人</em></p>'+
+        '</a>';
+        $("#line2").append(line1Content2);
+
+        var line1Content3 = '<a href="detail?id='+lines[2].id+'">'+
+            '<div class="img_box">'+
+            '<img src="'+getAppendImgSrc(lines[2],2)+'" alt="'+lines[2].lineName+'" width="378" height="214">'+
+            '<div class="mask"><p>'+lines[2].lineName+'</p></div>'+
+            '</div>'+
+            '<p>预计出行时间：'+getAppendTime(lines[2].goTimeStamp)+'<em class="color_blue fr">¥'+lines[2].price+'元／人</em></p>'+
+            '</a>';
+        $("#line3").append(line1Content3);
+
+        var line1Content4 = '<a href="detail?id='+lines[3].id+'">'+
+            '<img src="'+getAppendImgSrc(lines[3],1)+'" alt="'+lines[3].lineName+'" width="604" height="418">'+
+            '<strong>'+lines[3].lineName+'</strong>'+
+            '<span>预计出行时间：'+getAppendTime(lines[3].goTimeStamp)+'<em class="color_blue">¥'+lines[3].price+'元／人</em></span>'+
+            '</a>';
+        $("#line4").append(line1Content4);
+
+        var line1Content5 = '<a href="detail?id='+lines[4].id+'">'+
+            '<div class="img_box">'+
+            '<img src="'+getAppendImgSrc(lines[4],2)+'" alt="'+lines[4].lineName+'" width="378" height="214">'+
+            '<div class="mask"><p>'+lines[4].lineName+'</p></div>'+
+        '</div>'+
+        '<p>预计出行时间：'+getAppendTime(lines[4].goTimeStamp)+'<em class="color_blue fr">¥'+lines[4].price+'元／人</em></p>'+
+        '</a>';
+        $("#line5").append(line1Content5);
+
+        var line1Content6 = '<a href="detail?id='+lines[5].id+'">'+
+            '<div class="img_box">'+
+            '<img src="'+getAppendImgSrc(lines[5],2)+'" alt="'+lines[5].lineName+'" width="378" height="214">'+
+            '<div class="mask"><p>'+lines[5].lineName+'</p></div>'+
+        '</div>'+
+        '<p>预计出行时间：'+getAppendTime(lines[5].goTimeStamp)+'<em class="color_blue fr">¥'+lines[5].price+'元／人</em></p>'+
+        '</a>';
+        $("#line6").append(line1Content6);
+    }
+
+    function getAppendImgSrc(line,type){
+        for(var i=0;i<line.lineImgs.length;i++){
+            if(type == line.lineImgs[i].imgType){
+                return line.lineImgs[i].url;
+                break;
+            }
+        }
+    }
+
+    function getAppendTime(timeStamp){
+        var now = new Date(timeStamp),
+            y = now.getFullYear(),
+            m = now.getMonth() + 1,
+            d = now.getDate();
+        return ( y + "年" + (m < 10 ? "0" + m : m) + "月" + (d < 10 ? "0" + d : d) + "日");
+    }
+</script>
 </body>
 </html>

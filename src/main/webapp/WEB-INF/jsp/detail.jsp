@@ -28,14 +28,14 @@
     </div>
 
     <div class="list_cont_box">
-        <p class="detail_title">“行之悦旅行” 摩洛哥色彩国度探秘14日之旅</p>
+        <p class="detail_title" id="detail_title"></p>
         <div class="photo_show">
-            <span class="photo_num"><i class="detail_icon"></i><em>26</em></span>
+            <span class="photo_num"><i class="detail_icon"></i><em id="photo_num">26</em></span>
             <dl class="clearfix">
-                <dt class="fr"><img src="/images/detail_img3.png" alt="摄影图片" width="666" height="334"></dt>
+                <dt class="fr"><img id="detailBigBanner" src="" alt="摄影图片" width="666" height="334"></dt>
                 <dd class="fl little_pic">
-                    <img src="/images/detail_img1.png" alt="摄影图片" width="329" height="165">
-                    <img src="/images/detail_img2.png" alt="摄影图片" width="329" height="165">
+                    <img id="detailSmallBanner1" src="" alt="摄影图片" width="329" height="165">
+                    <img id="detailSmallBanner2" src="" alt="摄影图片" width="329" height="165">
                 </dd>
             </dl>
         </div>
@@ -43,7 +43,7 @@
             <div class="itinerary_main">
                 <h2>行程介绍</h2>
                 <h3>行程特色</h3>
-                <ul class="itinerary_list">
+                <%--<ul class="itinerary_list">
                     <li>	◇	乘阿联酋航空航空往返卡萨布兰卡；</li>
                     <li>	◇	极致深度体验摩洛哥的经典、神秘与温存；</li>
                     <li>	◇	马拉喀什：感受雕梁画栋千姿百态和令人迷恋不止的人文风情；</li>
@@ -54,17 +54,20 @@
                     <li>	◇	舍夫沙万：摩洛哥的“蓝白小镇”，感受梦幻蓝彩和艺术小清新的迷人魅力；</li>
                     <li>	◇	拉巴特：老城的乌达雅堡（电影《碟中谍5》取景地）；</li>
                     <li>	◇	卡萨布兰卡：哈桑二世清真寺和麦地那老城（电影《碟中谍5》取景地），感受经典老歌《卡萨布兰卡》中透出的地中海式的浪漫和淡淡地忧伤。</li>
-                </ul>
+                </ul>--%>
+                <p id="detailLineContent">
+
+                </p>
             </div>
             <div class="reserve_form">
-                <p class="price">¥<span>12900</span>/人 <em>起</em></p>
-                <p class="time">预计出行时间：  2017年7月15日</p>
+                <p class="price" id="detailOnePrice"></p>
+                <p class="time" id="detaiGoTime">预计出行时间：  2017年7月15日</p>
                 <form action="">
                     <div class="citket_num  clearfix">
                         <div class="left">
                             <span class="text">成人</span>
                             <div class="text_right">
-                                <input class="num_adult" type="text" value="2"/>
+                                <input id="detailAudltNum" class="num_adult" type="text" value="2"/>
                                 <span class="btn minus_btn"></span>
                                 <span class="btn add_btn"></span>
                                 <span class="line"></span>
@@ -73,7 +76,7 @@
                         <div class="left">
                             <span class="text">儿童</span>
                             <div class="text_right">
-                                <input class="num_child" type="text" value="0"/>
+                                <input id="detailChildNum" class="num_child" type="text" value="0"/>
                                 <span class="btn minus_btn"></span>
                                 <span class="btn add_btn"></span>
                                 <span class="line"></span>
@@ -85,7 +88,7 @@
                     </div>
                     <div class="reserve_button clearfix">
                         <span class="all_price">¥24800</span>
-                        <a href="#">立即预订</a>
+                        <a href="#" onclick="addOrderByWeb()">立即预订</a>
                     </div>
                 </form>
                 <div class="tel_bottom">预订电话<br>4008－517-517</div>
@@ -140,32 +143,32 @@
             <legend>更多北非线路</legend>
         </fieldset>
         <ul class="clearfix">
-            <li class="content_item fl">
-                <a href="#">
+            <li class="content_item fl" id="otherLine0">
+                <%--<a href="#">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
                     </div>
                     <p>预计出行时间：2017年5月10日<em class="color_blue fr">¥16,800元／人</em></p>
-                </a>
+                </a>--%>
             </li>
-            <li class="content_item fl">
-                <a href="#">
+            <li class="content_item fl" id="otherLine1">
+                <%--<a href="#">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
                     </div>
                     <p>预计出行时间：2017年5月10日<em class="color_blue fr">¥16,800元／人</em></p>
-                </a>
+                </a>--%>
             </li>
-            <li class="content_item fl">
-                <a href="#">
+            <li class="content_item fl" id="otherLine2">
+                <%--<a href="#">
                     <div class="img_box">
                         <img src="/images/article_img2.png" alt='“情迷撒哈拉” 摩洛哥一地深度15日游' width="378" height="214">
                         <div class="mask"><p>“情迷撒哈拉” 摩洛哥一地深度15日游</p></div>
                     </div>
                     <p>预计出行时间：2017年5月10日<em class="color_blue fr">¥16,800元／人</em></p>
-                </a>
+                </a>--%>
             </li>
         </ul>
     </div>
@@ -190,5 +193,74 @@
     </div>
     <script src="/js/jquery-1.12.3.min.js"></script>
     <script src="/js/main.js"></script>
+    <script type="text/javascript">
+        var href = window.document.location.href;
+        var lineId = href.split("=")[1];
+        $.ajax({
+            type: "GET",
+            url: "/line/queryOneById?id="+lineId,
+            dataType: "json",
+            success: function(data) {
+                if(data.status == "success"){
+                    console.log(data.data);
+                    $("#detailOnePrice").append('¥<span id="detailPrice"></span>'+data.data.price+'/人 <em>起</em>')
+
+                    $("#detailLineContent").text(data.data.lineContent);
+                    $("#photo_num").text(data.data.lineImgs.length);
+                    $("#detail_title").text(data.data.lineName);
+                    $("#detailBigBanner").attr("src",data.data.lineImgs[0].url);
+                    $("#detailSmallBanner1").attr("src",data.data.lineImgs[1].url);
+                    $("#detailSmallBanner2").attr("src",data.data.lineImgs[2].url);
+                }
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "/line/queryOtherThreeById?id="+lineId,
+            dataType: "json",
+            success: function(data) {
+                if(data.status == "success"){
+                    appendOtherLineList(data.data);
+                }
+            }
+        });
+
+
+        function addOrderByWeb(){
+
+        }
+
+        function appendOtherLineList(lines){
+            for(var i=0;i<lines.length;i++){
+                var content = '<a href="detail?id='+lines[i].id+'">'+
+                '<div class="img_box">'+
+                    '<img src="'+getAppendImgSrc(lines[i],2)+'" alt="'+lines[i].lineName+'" width="378" height="214">'+
+                    '<div class="mask"><p>'+lines[i].lineName+'</p></div>'+
+                '</div>'+
+                '<p>预计出行时间：'+getAppendTime(lines[i].goTimeStamp)+'<em class="color_blue fr">¥'+lines[i].price+'元／人</em></p>'+
+                '</a>';
+                var idStr = "otherLine"+i.toString();
+                console.log($("#"+idStr));
+                $("#"+idStr).append(content);
+            }
+        }
+
+        function getAppendImgSrc(line,type){
+            for(var i=0;i<line.lineImgs.length;i++){
+                if(type == line.lineImgs[i].imgType){
+                    return line.lineImgs[i].url;
+                    break;
+                }
+            }
+        }
+
+        function getAppendTime(timeStamp){
+            var now = new Date(timeStamp),
+                y = now.getFullYear(),
+                m = now.getMonth() + 1,
+                d = now.getDate();
+            return ( y + "年" + (m < 10 ? "0" + m : m) + "月" + (d < 10 ? "0" + d : d) + "日");
+        }
+    </script>
 </body>
 </html>

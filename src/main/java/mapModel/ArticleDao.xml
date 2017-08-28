@@ -46,7 +46,7 @@
 
     <update id="updateArticleById" parameterType="model.artical.Article">
         update article set
-        title=#{title},content=#{content},article_type=#{articleType},sort=#{sort},update_time=#{updateTime},img=#{}
+        title=#{title},content=#{content},article_type=#{articleType},sort=#{sort},update_time=#{updateTime},img=#{img}
         where id = #{id};
     </update>
 
