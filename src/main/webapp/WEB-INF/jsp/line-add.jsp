@@ -24,11 +24,19 @@
                            data-options="required:true,showSeconds:true" value="3/4/2010 2:3" style="width:150px">  </td>
                 <td></td>
             </tr>
-            <tr>
+     <%--       <tr>
                 <td>行程介绍:</td>
                 <td><textarea class="" id="lineContent" type="text" name="lineContent" data-options="multiline:true"  style="height: 100px; width: 280px"></textarea></td>
                 <td></td>
+            </tr>--%>
+
+            <tr>
+                <td>行程介绍:</td>
+                <td>
+                    <textarea style="width:800px;height:300px;visibility:hidden;"  name="lineContent" id="lineContent"></textarea>
+                </td>
             </tr>
+
             <tr>
                 <td>
                     大banner  :
@@ -82,6 +90,14 @@
     </div>
 </div>
 <script type="text/javascript">
+
+
+    var lineAddEditor ;
+    //页面初始化完毕后执行此方法
+    $(function(){
+        //创建富文本编辑器
+        lineAddEditor = KindEditor.create("#lineContent", TT.kingEditorParams)
+    });
 
     function submitForm(){
         /*//有效性验证
