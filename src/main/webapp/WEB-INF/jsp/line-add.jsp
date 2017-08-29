@@ -203,8 +203,8 @@
             success:function(data){
                 if(data.status == 'success'){
                     var imgIdStr = obj.getAttribute("id") + 'Img';
-//                    document.getElementById(imgIdStr).src = data.data;
-                    document.getElementById(imgIdStr).src = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4267222417,1017407570&fm=200&gp=0.jpg";
+                    document.getElementById(imgIdStr).src = data.data;
+//                    document.getElementById(imgIdStr).src = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4267222417,1017407570&fm=200&gp=0.jpg";
                     if(document.getElementById(imgIdStr).name == "otherImg"){
                         var objTr = document.getElementById(idStr).parentNode.parentNode;
                         $(objTr).append('<td><input type="button" onclick="javascript:deleteOtherImgTr(this)" id="deleteOtherImg" value="删除"/></td>');
