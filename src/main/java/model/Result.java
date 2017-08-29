@@ -14,11 +14,11 @@ public class Result {
     public int count;
     private String message;
 
-    /*easyUI使用的返回参数*/
+    /*easyUI??????????*/
     private int total;
     private Object rows;
 
-    /*返回的URL*/
+    /*?????URL*/
     private String url;
 
     public String getUrl() {

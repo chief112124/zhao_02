@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class PageC {
-    /*ÏÔÊ¾Ê×Ò³*/
+    /*ï¿½ï¿½Ê¾ï¿½ï¿½Ò³*/
     @RequestMapping("/backend")
     public String showIndex() {
         return "index";
     }
 
-    /*ÏÔÊ¾Ê×Ò³*/
+    /*ï¿½ï¿½Ê¾ï¿½ï¿½Ò³*/
     @RequestMapping("/")
     public String showMain() {
         return "main";

@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class JsonUtils {
 
-    // ¶¨Òåjackson¶ÔÏó
+    // ï¿½ï¿½ï¿½ï¿½jacksonï¿½ï¿½ï¿½ï¿½
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
-     * ½«¶ÔÏó×ª»»³Éjson×Ö·û´®¡£
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½jsonï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
      * <p>Title: pojoToJson</p>
      * <p>Description: </p>
      * @param data
@@ -32,10 +32,10 @@ public class JsonUtils {
     }
 
     /**
-     * ½«json½á¹û¼¯×ª»¯Îª¶ÔÏó
+     * ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
      *
-     * @param jsonData jsonÊý¾Ý
-     * @param clazz ¶ÔÏóÖÐµÄobjectÀàÐÍ
+     * @param jsonData jsonï¿½ï¿½ï¿½ï¿½
+     * @param clazz ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½objectï¿½ï¿½ï¿½ï¿½
      * @return
      */
     public static <T> T jsonToPojo(String jsonData, Class<T> beanType) {
@@ -49,7 +49,7 @@ public class JsonUtils {
     }
 
     /**
-     * ½«jsonÊý¾Ý×ª»»³Épojo¶ÔÏólist
+     * ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½pojoï¿½ï¿½ï¿½ï¿½list
      * <p>Title: jsonToList</p>
      * <p>Description: </p>
      * @param jsonData
