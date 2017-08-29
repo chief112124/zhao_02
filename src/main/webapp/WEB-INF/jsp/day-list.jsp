@@ -53,7 +53,6 @@
             loadMsg:'数据加载中......',
         }
     );
-    alert(2222);
     $.ajax({
         type: "GET",
         url: "/line/lineIdAndTitles",
@@ -66,7 +65,6 @@
             });
         }
     });
-    alert(333);
 /*
     function getSelectionsIds(){
         var dayList = $("#dayList");

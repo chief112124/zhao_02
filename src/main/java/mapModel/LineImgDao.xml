@@ -19,6 +19,6 @@
         select
         *
         from line_img
-        where line_id=#{lineId}
+        where line_id=#{lineId} order by img_type
     </select>
 </mapper>

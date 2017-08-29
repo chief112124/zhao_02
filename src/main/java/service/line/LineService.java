@@ -225,6 +225,10 @@ public class LineService {
         Result result = new Result();
         result.setStatus(Result.SUCCESS);
         List<Line> lines = lineDao.querySixLine();
+        for(Line line:lines){
+            List<LineImg> imgs = lineImgDao.getLineImgByLineId(line.getId());
+            line.setLineImgs(imgs);
+        }
         result.setData(lines);
         return result;
     }
