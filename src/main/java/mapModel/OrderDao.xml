@@ -27,7 +27,7 @@
 
     <insert id="addOrder" parameterType="model.Order.Order">
         insert into order_main
-        (line_id,adult_num,child_num,phone,price,totalPrice,note,create_time,status)
+        (line_id,adult_num,child_num,phone,price,total_price,note,create_time,status)
         values
         (#{lineId},#{adultNum},#{childNum},#{phone},#{price},#{totalPrice},#{note},#{createTime},#{status});
     </insert>

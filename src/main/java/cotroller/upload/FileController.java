@@ -26,7 +26,7 @@ public class FileController {
         result.setStatus(Result.SUCCESS);
 
 //        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-        String path = "/home/ftpuser/www/images/";
+        String path = "/home/ftpuser/www/imageWeb/";
         String fileName = new Date().getTime()+".jpg";
         File targetFile = new File(path, fileName);
         if(!targetFile.exists()){
@@ -38,7 +38,7 @@ public class FileController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        result.setUrl(path+"/"+fileName);
+        result.setUrl("http://47.94.175.16/imageWeb"+"/"+fileName);
         return result;
     }
 

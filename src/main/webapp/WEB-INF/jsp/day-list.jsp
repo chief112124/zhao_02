@@ -141,7 +141,6 @@
 
 
         $('#daySearch').bind('click', function () {
-            alert(1111);
            var selectValue =  $('#lineId').combobox('getValue');
             $('#dayList').datagrid(
                 {
@@ -160,7 +159,6 @@
                     loadMsg:'数据加载中......',
                 }
             );
-            alert(2222);
         })
     })
 

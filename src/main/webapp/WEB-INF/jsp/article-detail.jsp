@@ -14,11 +14,16 @@
 				<td>文章类型:</td>
 				<td>
 					<select id="cc" class="easyui-combobox" name="articleType" style="width:200px;" disabled="disabled">
-						<option value="1">情感</option>
-						<option value="2">军事</option>
-						<option value="3">历史</option>
-						<option value="4">搞笑</option>
-						<option value="5">社会</option>
+						<option value="1">惠玩食宿行</option>
+						<option value="2">行摄北非</option>
+						<option value="3">贴心的话</option>
+						<option value="4">关于我们</option>
+						<option value="5">诚心</option>
+						<option value="6">贴心</option>
+						<option value="7">细心</option>
+						<option value="8">信心</option>
+						<option value="9">走心</option>
+						<option value="10">底部广告</option>
 					</select>
 
 				</td>
