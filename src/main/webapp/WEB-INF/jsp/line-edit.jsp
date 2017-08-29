@@ -26,11 +26,20 @@
                        data-options="required:true,showSeconds:true" value="3/4/2010 2:3" style="width:150px">  </td>
             <td></td>
         </tr>
-        <tr>
+ <%--       <tr>
             <td>行程介绍:</td>
             <td><textarea id="editLineContent" class="" type="text" name="editLineContent" data-options="multiline:true"  style="height: 100px; width: 280px"></textarea></td>
             <td></td>
+        </tr>--%>
+
+
+        <tr>
+            <td>行程介绍:</td>
+            <td>
+                <textarea style="width:800px;height:300px;visibility:hidden;"  name="editLineContent" id="editLineContent"></textarea>
+            </td>
         </tr>
+
         <tr>
             <td>
                 大banner  :
@@ -74,6 +83,15 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    var lineEditEditor ;
+    //页面初始化完毕后执行此方法
+    $(function(){
+        //创建富文本编辑器
+        lineEditEditor = KindEditor.create("#editLineContent", TT.kingEditorParams)
+    });
+
+
     var lineId = 0;
     var int = self.setInterval("clock()",50);
     function clock(){
@@ -103,6 +121,8 @@
         var uploadSmallBanner2Img = $("#uploadEditSmallBanner2Img").attr("src");
         var lineName = $("#editLineName").val();
         var goTimeStamp = $("#editGoTimeStamp").val();
+
+        lineEditEditor.sync();
         var lineContent = $("#editLineContent").val();
         var price = $("#editPrice").val();
         if(uploadBigBannerImg == "" || uploadSmallBanner1Img == "" || uploadSmallBanner2Img == "" || lineName == "" || goTimeStamp == "" || lineContent == "" || price == "" ){

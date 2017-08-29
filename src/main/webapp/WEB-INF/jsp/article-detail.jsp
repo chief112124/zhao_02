@@ -23,9 +23,17 @@
 
 				</td>
 			</tr>
+			<tr>
 				<td>文章分类:</td>
 				<td><input class="easyui-textbox" type="text" name="sort"  disabled="disabled" /></td>
 			</tr>
+
+			<tr>
+				<td>封面图:</td>
+				<td><input class="easyui-image" type="image" name="img" disabled="disabled"/>
+				</td>
+			</tr>
+
 			<tr>
 				<td>文章内容:</td>
 				<td>
@@ -38,6 +46,10 @@
 <script type="text/javascript">
 	var itemDetailEditor ;
 	$(function(){
+
+/*        var mydata = $("#itemDetailForm").form('getData');
+		alert("=============="+mydata);*/
+
 		//实例化编辑器
 		itemDetailEditor = TAOTAO.createEditor("#itemDetailForm [name=content]");
 		itemDetailEditor.readonly(true);
