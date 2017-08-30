@@ -47,3 +47,28 @@ $(function () {
         $('.all_price').text('¥'+all_price)
     }
 });
+
+$(function () {
+    $(".pop_reserve").click(function () {
+        $(".pop_tip").removeClass("none");
+    });
+    $(".close_pop").click(function () {
+        $(".pop_tip").addClass("none");
+    });
+});
+
+
+$(function(){
+    $('.photo_show img').click(function() {
+       $('.pop_swiper').removeClass('none');
+    });
+    var mySwiper = new Swiper('.pop_photo', {
+        loop: true,
+        autoplay: 5000,
+        prevButton:'.swiper-button-prev',
+        nextButton:'.swiper-button-next'
+    });
+    $('.close_swiper').click(function () {
+        $('.pop_swiper').addClass('none');
+    });
+});

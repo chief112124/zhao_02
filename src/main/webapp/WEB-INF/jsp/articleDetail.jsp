@@ -30,22 +30,22 @@
 
     <div class="list_cont_box clearfix">
         <div class="fl" id="cont_main_line">
-            <h2 class="cont_title">“行之悦旅行” 尽在北非</h2>
-            <p class="cont_time">2017-08-10     15:26</p>
+            <h2 id="cont_title" class="cont_title">“行之悦旅行” 尽在北非</h2>
+            <p id="cont_time" class="cont_time">2017-08-10     15:26</p>
             <ul class="cont_main detail_word">
-                <li>
-                    <a href="#">
+                <li id="detailLi">
+                    <%--<a href="#">
                         <img src="/images/article_img4.png" alt="" width="635" height="386">
                         <p class="detail_text"><b>卡萨布兰卡：</b>卡萨布兰卡是摩洛哥的第一大城市，濒临大西洋，树木常青，气候宜人。从海上眺望这座城市，上下是碧蓝无垠的天空和海水，中间夹着一条高高低低的白色轮廓线。有时候大西洋上海浪滔天，港内却水波不兴。那部著名的同名电影和歌曲，给这座城市烙上了永恒爱情的标签。</p>
-                    </a>
+                    </a>--%>
                 </li>
-                <li>
+                <%--<li>
                     <a href="#">
                         <img src="/images/article_img4.png" alt="" width="635" height="386">
                         <p class="detail_text"><b>卡萨布兰卡：</b>卡萨布兰卡是摩洛哥的第一大城市，濒临大西洋，树木常青，气候宜人。从海上眺望这座城市，上下是碧蓝无垠的天空和海水，中间夹着一条高高低低的白色轮廓线。有时候大西洋上海浪滔天，港内却水波不兴。那部著名的同名电影和歌曲，给这座城市烙上了永恒爱情的标签。</p>
                         <p class="detail_text t2"><b>卡萨布兰卡：</b>卡萨布兰卡是摩洛哥的第一大城市，濒临大西洋，树木常青，气候宜人。从海上眺望这座城市，上下是碧蓝无垠的天空和海水，中间夹着一条高高低低的白色轮廓线。有时候大西洋上海浪滔天，港内却水波不兴。那部著名的同名电影和歌曲，给这座城市烙上了永恒爱情的标签。</p>
                     </a>
-                </li>
+                </li>--%>
             </ul>
         </div>
 
@@ -53,8 +53,8 @@
             <div class="sidebar_main" id="sidebar_fix">
                 <div class="sidebar_consult">
                     <p class="side_title">心有所属<br>梦幻北非</p>
-                    <input type="tel" maxlength="11" placeholder="联系电话">
-                    <button>立即预订</button>
+                    <input id="tel" type="tel" maxlength="11" placeholder="联系电话">
+                    <button onclick="addOrderByWebArticleDetail()">立即预订</button>
                     <p class="tips_tel">请留下您的手机号码，我们的客服人员会及时与您联系，谢谢。</p>
                     <p class="tel_number">预订电话：4008－517-517</p>
                 </div>
@@ -132,7 +132,76 @@
             </ul>
         </div>
     </div>
+
+    <div id="pop_up" class="pop_up none">
+        <div class="pop_cont">
+            <p>您的信息已经提交<br>我们将尽快给您回电</p>
+            <button id="closePop" class="close_pop">好的</button>
+        </div>
+    </div>
+
     <script type="text/javascript">
+
+        var href = window.document.location.href;
+        var args = href.split("?")[1];
+        var type = args.split("=")[0];
+        var id = args.split("=")[1];
+        if(type == "type"){
+            getArticleDetail("/article/queryArticleByType?type="+id+"&page=1&rows=1");
+        }else if(type == "id"){
+            getArticleDetail("/article/queryArticleById?id="+id);
+        }
+
+        function getArticleDetail(url){
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(data) {
+                    if(data.status == "success"){
+                        appendArticleDetail(data.data);
+                    }else if(data.status == "norecord"){
+                        alert("记录不存在！")
+                    }else{
+                        alert("请求异常！")
+                    }
+                }
+            });
+        }
+
+        function appendArticleDetail(data){
+            var detail = null;
+            if(type == "type"){
+                detail = data[0]
+            }else if(type == "id"){
+                detail = data;
+            }
+            $("#cont_title").text(data.title);
+            $("#cont_time").text(getAppendArticleListTime(data.createTime));
+            $("#detailLi").append(data.content);
+        }
+
+        function addOrderByWebArticleDetail(){
+            var phone = $("#tel").val();
+            if(phone == null || phone == ""){
+                alert("请填写联系电话！")
+                return;
+            }
+            var data = {phone :phone};
+            $.ajax({
+                type: "post",
+                url: "/order/add",
+                contentType: "application/json;charset=utf-8",
+                data:JSON.stringify(data),
+                dataType: "json",
+                success: function(data) {
+                    if(data.status == "success"){
+                        showpop();
+                    }
+                }
+            });
+        }
+
         $.ajax({
             type: "GET",
             url: "/line/queryOtherThreeById?id="+0,
@@ -174,6 +243,24 @@
                 m = now.getMonth() + 1,
                 d = now.getDate();
             return ( y + "年" + (m < 10 ? "0" + m : m) + "月" + (d < 10 ? "0" + d : d) + "日");
+        }
+
+        function showpop(){
+            $("#pop_up").removeClass('none');
+        }
+
+        $("#closePop").click(function () {
+            $("#pop_up").addClass('none');
+        });
+
+        function getAppendArticleListTime(timeStamp){
+            var now = new Date(timeStamp),
+                y = now.getFullYear(),
+                m = now.getMonth() + 1,
+                d = now.getDate(),
+                h = now.getHours(),
+                min = now.getMinutes();
+            return ( y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + ""+ " "+h+":"+min);
         }
     </script>
 </body>

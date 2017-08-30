@@ -79,7 +79,7 @@ public class ArticleService {
         HashMap<String,Integer> map = new HashMap<String,Integer>();
         map.put("articleType" ,articleType);
         int start = (page-1)*row;
-        map.put("limit", page);
+        map.put("limit", row);
         map.put("offset",start);
         List<Article> articles = new ArrayList<Article>();
         try{
