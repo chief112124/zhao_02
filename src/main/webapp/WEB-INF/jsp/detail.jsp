@@ -217,8 +217,9 @@
         </div>
     </div>
 
-    <script type="text/javascript" charset="utf-8" src="/js/swiper-3.4.2.min.js"></script>
+
     <script type="text/javascript" charset="utf-8" src="/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/swiper-3.4.2.jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="/js/main.js"></script>
 
     <script type="text/javascript">
