@@ -50,7 +50,8 @@
         where id = #{id};
     </update>
 
-    <select id="queryAll" parameterType="java.util.HashMap"  resultType="model.artical.Article">
+    <select id="queryAll"
+            parameterType="java.util.HashMap"  resultType="model.artical.Article">
         SELECT
         * FROM article
         LIMIT #{offset},#{limit}

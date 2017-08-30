@@ -145,22 +145,37 @@ public class ArticleService {
         for (Article item : articles) {
             switch (item.getArticleType()) {
                 case 1:
-                    item.setTypeStr("情感");
+                    item.setTypeStr("惠玩食宿行");
                     break;
                 case 2:
-                    item.setTypeStr("军事");
+                    item.setTypeStr("行摄北非");
                     break;
                 case 3:
-                    item.setTypeStr("历史");
+                    item.setTypeStr("贴心的话");
                     break;
                 case 4:
-                    item.setTypeStr("搞笑");
+                    item.setTypeStr("关于我们");
                     break;
                 case 5:
-                    item.setTypeStr("社会");
+                    item.setTypeStr("诚心");
+                    break;
+                case 6:
+                    item.setTypeStr("贴心");
+                    break;
+                case 7:
+                    item.setTypeStr("细心");
+                    break;
+                case 8:
+                    item.setTypeStr("信心");
+                    break;
+                case 9:
+                    item.setTypeStr("走心");
+                    break;
+                case 10:
+                    item.setTypeStr("广告");
                     break;
                 default:
-                    item.setTypeStr("情感");
+                    item.setTypeStr("其他");
             }
         }
         return articles;

@@ -21,10 +21,10 @@
         <a href="main"><img src="/images/logo.png" alt="北京中贸国际商旅" width="74" height="74"></a>
         <ul class="clearfix">
             <li><a class="current" href="main">行程集锦</a></li>
-            <li><a href="articleList">惠玩食宿行</a></li>
-            <li><a href="articleList">行摄北非</a></li>
-            <li><a href="articleList">贴心的话</a></li>
-            <li><a href="articleList">关于我们</a></li>
+            <li><a href="articleList?type=1">惠玩食宿行</a></li>
+            <li><a href="articleList?type=2">行摄北非</a></li>
+            <li><a href="articleList?type=3">贴心的话</a></li>
+            <li><a href="articleDetail?type=4">关于我们</a></li>
         </ul>
     </div>
     <div class="banner_text">
@@ -35,31 +35,31 @@
 <div class="index_main">
     <ul class="main_tag clearfix">
         <li>
-            <a href="articleDetail">
+            <a href="articleDetail?type=5">
                 <i class="icon_sincerity"></i><strong>诚 心</strong>
                 <p>当地旅游服务正规优质<br>不打折扣有诚心</p>
             </a>
         </li>
         <li>
-            <a href="articleDetail">
+            <a href="articleDetail?type=6">
                 <i class="icon_intimate"></i><strong>贴 心</strong>
                 <p>尤其注重当地导游服务<br>讲解到位，服务贴心</p>
             </a>
         </li>
         <li>
-            <a href="articleDetail">
+            <a href="articleDetail?type=7">
                 <i class="icon_careful"></i><strong>细 心</strong>
                 <p>行程安排周到细心<br>细微之处值得称道</p>
             </a>
         </li>
         <li>
-            <a href="articleDetail">
+            <a href="articleDetail?type=8">
                 <i class="icon_confidence"></i><strong>信 心</strong>
                 <p>接待团队实力雄厚，驻华使<br>馆皆有口碑，我们有信心</p>
             </a>
         </li>
         <li>
-            <a href="articleDetail">
+            <a href="articleDetail?type=9">
                 <i class="icon_mindful"></i><strong>走 心</strong>
                 <p>当地旅游服务正规优质<br>不打折扣有诚心</p>
             </a>
@@ -124,7 +124,7 @@
         </dd>
     </dl>
 </div>
-<div class="footer_box">
+<%--<div class="footer_box">
     <div class="footer_wrapper clearfix">
         <div class="footer_main">
             <p class="slogan">slogan写在这里</p>
@@ -138,6 +138,23 @@
         <ul class="QR_code">
             <li><img src="/images/wechat.png" width="128" height="128" alt="官方微信，扫描二维码" /><p>官方微信</p></li>
             <li><img src="/images/weibo.png" width="128" height="128" alt="官方微博，扫描二维码" /><p>官方微博</p></li>
+        </ul>
+    </div>
+</div>--%>
+<div class="footer_box">
+    <div class="footer_wrapper clearfix">
+        <div class="footer_main">
+            <p class="slogan">slogan写在这里</p>
+            <ul>
+                <li class="icon_tel">010-85632746  85632745</li>
+                <li class="icon_email">2621385788@qq.com</li>
+                <li class="icon_address">北京市广渠门内领航国际3号楼1单元1806室</li>
+            </ul>
+            <p class="copyright">2017 北京市国际商务旅行社有限责任公司 保留一切权利</p>
+        </div>
+        <ul class="QR_code">
+            <li><img src="/images/wechatbeifei.jpg" width="128" height="128" alt="官方微信，扫描二维码" /><p>官方微信</p></li>
+            <li><img src="/images/weibobeifei.jpg" width="128" height="128" alt="官方微博，扫描二维码" /><p>官方微博</p></li>
         </ul>
     </div>
 </div>
