@@ -178,13 +178,18 @@
         }
     });
     function appendLineList(lines){
+        if(lines.length == 0){
+            return;
+        }
         var line1Content1 = '<a href="detail?id='+lines[0].id+'">'+
         '<img src="'+getAppendImgSrc(lines[0],1)+'" alt="" width="604" height="418">'+
         '<strong>'+lines[0].lineName+'</strong>'+
         '<span>预计出行时间：'+getAppendTime(lines[0].goTimeStamp)+'<em class="color_blue">¥'+lines[0].price+'元／人</em></span>'+
         '</a>';
         $("#line1").append(line1Content1);
-
+        if(lines.length == 1){
+            return;
+        }
         var line1Content2 = '<a href="detail?id='+lines[1].id+'">'+
             '<div class="img_box">'+
             '<img src="'+getAppendImgSrc(lines[1],2)+'" alt="'+lines[1].lineName+'" width="378" height="214">'+
@@ -193,7 +198,9 @@
         '<p>预计出行时间：'+getAppendTime(lines[1].goTimeStamp)+'<em class="color_blue fr">¥'+lines[1].price+'元／人</em></p>'+
         '</a>';
         $("#line2").append(line1Content2);
-
+        if(lines.length == 2){
+            return;
+        }
         var line1Content3 = '<a href="detail?id='+lines[2].id+'">'+
             '<div class="img_box">'+
             '<img src="'+getAppendImgSrc(lines[2],2)+'" alt="'+lines[2].lineName+'" width="378" height="214">'+
@@ -202,14 +209,18 @@
             '<p>预计出行时间：'+getAppendTime(lines[2].goTimeStamp)+'<em class="color_blue fr">¥'+lines[2].price+'元／人</em></p>'+
             '</a>';
         $("#line3").append(line1Content3);
-
+        if(lines.length == 3){
+            return;
+        }
         var line1Content4 = '<a href="detail?id='+lines[3].id+'">'+
             '<img src="'+getAppendImgSrc(lines[3],1)+'" alt="'+lines[3].lineName+'" width="604" height="418">'+
             '<strong>'+lines[3].lineName+'</strong>'+
             '<span>预计出行时间：'+getAppendTime(lines[3].goTimeStamp)+'<em class="color_blue">¥'+lines[3].price+'元／人</em></span>'+
             '</a>';
         $("#line4").append(line1Content4);
-
+        if(lines.length == 4){
+            return;
+        }
         var line1Content5 = '<a href="detail?id='+lines[4].id+'">'+
             '<div class="img_box">'+
             '<img src="'+getAppendImgSrc(lines[4],2)+'" alt="'+lines[4].lineName+'" width="378" height="214">'+
@@ -218,7 +229,9 @@
         '<p>预计出行时间：'+getAppendTime(lines[4].goTimeStamp)+'<em class="color_blue fr">¥'+lines[4].price+'元／人</em></p>'+
         '</a>';
         $("#line5").append(line1Content5);
-
+        if(lines.length == 5){
+            return;
+        }
         var line1Content6 = '<a href="detail?id='+lines[5].id+'">'+
             '<div class="img_box">'+
             '<img src="'+getAppendImgSrc(lines[5],2)+'" alt="'+lines[5].lineName+'" width="378" height="214">'+
