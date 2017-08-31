@@ -34,7 +34,6 @@
 <script>
 
     /*默认加载全部的数据*/
-    alert(1111);
     $('#dayList').datagrid(
         {
             singleSelect:true,
@@ -141,7 +140,7 @@
 
 
         $('#daySearch').bind('click', function () {
-           var selectValue =  $('#lineId').combobox('getValue');
+           var selectValue =  $('#lineIdInList').combobox('getValue');
             $('#dayList').datagrid(
                 {
                     singleSelect:true,
