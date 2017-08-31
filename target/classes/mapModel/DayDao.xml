@@ -37,7 +37,49 @@
 
     <update id="updateDaysById" parameterType="model.line.Day">
         update line_day set
-        day_num = #{dayNum},title = #{title},meal = #{meal},hotel = #{hotel},travel = #{travel},linght_point = #{linghtPoint}
+        day_num = #{dayNum},title = #{title},meal = #{meal},hotel = #{hotel},travel = #{travel},linght_point = #{linghtPoint}, line_id=#{lineId}
         where id = #{id}
     </update>
+
+    <select id="queryAllDay" resultType="java.util.HashMap">
+          SELECT
+                  a.id as id,
+                  line_name     AS lineName,
+                  day_num       AS dayNum,
+                  title,
+                  meal,
+                  hotel,
+                  a.create_time AS createTime,
+                  a.travel,
+                  a.linght_point AS linghtPoint,
+                  a.line_id as lineId
+                FROM line_day a LEFT JOIN line b ON a.line_id = b.id
+                WHERE a.status = 0
+                limit #{offset},#{limit};
+    </select>
+
+    <select id="queryAllCount" resultType="int">
+        SELECT count(*) FROM line_day WHERE status=0;
+    </select>
+
+    <select id="queryDayByLineId" resultType="java.util.HashMap">
+        SELECT
+          a.id as id,
+          line_name     AS lineName,
+          day_num       AS dayNum,
+          title,
+          meal,
+          hotel,
+          a.create_time AS createTime,
+          a.travel,
+          a.linght_point AS linghtPoint,
+          a.line_id as lineId
+        FROM line_day a LEFT JOIN line b ON a.line_id = b.id
+        WHERE a.status = 0 AND a.line_id=#{lineId}
+        limit #{offset},#{limit};
+    </select>
+
+    <select id="queryDayCountByLineId" resultType="int">
+        SELECT count(*) FROM line_day WHERE status=0 and line_id=#{lineId};
+    </select>
 </mapper>

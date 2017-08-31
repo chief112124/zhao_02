@@ -24,20 +24,24 @@
          		<span>文章管理</span>
          		<ul>
 	         		<li data-options="attributes:{'url':'article-add'}">新增文章</li>
-	         		<li data-options="attributes:{'url':'article-list'}">查询文章</li>
+	         		<li data-options="attributes:{'url':'article-list'}">文章列表</li>
 	         	</ul>
          	</li>
          	<li>
          		<span>订单管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'order-list'}">查询订单</li>
+	         		<li data-options="attributes:{'url':'order-list'}">订单列表</li>
+					<li data-options="attributes:{'url':'order-add'}">新增订单</li>
 	         	</ul>
          	</li>
 
 			<li>
 				<span>路线管理</span>
 				<ul>
-					<li data-options="attributes:{'url':'content-category'}">待定</li>
+					<li data-options="attributes:{'url':'line-add'}">新增路线</li>
+					<li data-options="attributes:{'url':'line-list'}">路线列表</li>
+					<li data-options="attributes:{'url':'day-add'}">新增日程</li>
+					<li data-options="attributes:{'url':'day-list'}">日程列表</li>
 				</ul>
 			</li>
          </ul>

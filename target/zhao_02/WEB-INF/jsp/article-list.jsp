@@ -10,10 +10,12 @@
         <th data-options="field:'title',width:200">文章标题</th>
         <th data-options="field:'typeStr',width:100">文章类别</th>
         <th data-options="field:'content',width:100">文章内容</th>
+        <th data-options="field:'img',width:50,align:'center',formatter:TAOTAO.formatUrl">图片</th>
         <th data-options="field:'status',width:100">状态</th>
         <th data-options="field:'sort',width:100">排序</th>
-        <th data-options="field:'createTime',width:100">创建时间</th>
-        <th data-options="field:'updateTime',width:100">更新时间</th>
+        <th data-options="field:'createTime',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建时间</th>
+        <th data-options="field:'updateTime',width:130,align:'center',formatter:TAOTAO.formatDateTime">更新时间</th>
+
     </tr>
     </thead>
 </table>
@@ -23,7 +25,9 @@
         <div id="addArticle" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</div>
         <div id="editArticle" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</div>
         <div id="deletArticle" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">删除</div>
-         文章类型:
+        <div id="detailArticle" class="easyui-linkbutton" iconCls="icon-tip" plain="true">详情</div>
+
+        文章类型:
             <select id="articleType" class="easyui-combobox" style="width:100px">
                 <option value="0">全部</option>
                 <option value="1">情感</option>
@@ -34,22 +38,11 @@
             </select>
             <a id="doSearch" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
     </div>
-<%--    <div>
-        开始时间: <input id="fromDate" class="easyui-datebox" style="width:80px">
-        截止时间: <input id="endDate" class="easyui-datebox" style="width:80px">--%>
-<%--        文章类型:
-        <select id="articleType" class="easyui-combobox" style="width:100px">
-                 <option value="0">全部</option>
-                 <option value="1">情感</option>
-                 <option value="2">军事</option>
-                 <option value="3">历史</option>
-                 <option value="4">搞笑</option>
-                 <option value="5">社会</option>
-        </select>
-        <a id="doSearch" class="easyui-linkbutton" iconCls="icon-search">搜索</a>--%>
-    </div>
 </div>
 <div id="itemEditWindow" class="easyui-window" title="编辑文章" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/article-edit'" style="width:80%;height:80%;padding:10px;">
+</div>
+
+<div id="itemDetailWindow" class="easyui-window" title="文章详情" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/article-detail'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
@@ -139,6 +132,36 @@
                     });
                 }
             });
+        });
+
+        $('#detailArticle').bind('click', function () {
+            var ids = getSelectionsIds();
+            if(ids.length == 0){
+                $.messager.alert('提示','必须选择一个文章才能查看详情!');
+                return ;
+            }
+            if(ids.indexOf(',') > 0){
+                $.messager.alert('提示','只能选择一个文章!');
+                return ;
+            }
+
+            $("#itemDetailWindow").window({
+                onLoad :function(){
+                    //回显数据
+                    var data = $("#itemList").datagrid("getSelections")[0];
+                    $("#itemDetailForm").form("load",data);
+                    itemDetailEditor.html(data.content);
+                    TAOTAO.init({
+                        "title" : data.title,
+                        "articleType" : data.articleType,
+                        "sort": data.sort,
+                        fun:function(node){
+                            TAOTAO.changeItemParam(node, "itemDetailForm");
+                        }
+                    });
+                }
+            }).window("open");
+
         });
 
 
