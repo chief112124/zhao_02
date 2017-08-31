@@ -30,7 +30,7 @@
 
     <div class="list_cont_box clearfix">
         <ul class="cont_main" id="cont_main_line">
-            <li>
+            <%--<li>
                 <a href="articleDetail">
                     <img src="/images/article_img4.png" alt="" width="635" height="386">
                     <p><strong class="color_blue">“行之悦旅行” 尽在北非</strong><em>2017-08-10   15:26</em></p>
@@ -53,7 +53,7 @@
                     <img src="/images/article_img4.png" alt="" width="635" height="386">
                     <p><strong class="color_blue">“行之悦旅行” 尽在北非</strong><em>2017-08-10   15:26</em></p>
                 </a>
-            </li>
+            </li>--%>
         </ul>
         <div class="sidebar_box">
             <div class="sidebar_main" id="sidebar_fix">
@@ -138,6 +138,14 @@
             </ul>
         </div>
     </div>
+
+    <div id="pop_up" class="pop_up none">
+        <div class="pop_cont">
+            <p>您的信息已经提交<br>我们将尽快给您回电</p>
+            <button id="closePop" class="close_pop">好的</button>
+        </div>
+    </div>
+
     <script type="text/javascript">
 
         var href = window.document.location.href;
@@ -149,16 +157,25 @@
             dataType: "json",
             success: function(data) {
                 if(data.status == "success"){
-                    appendArticleList(data.data);
+                    appendArticleList(data.rows);
                 }else if(data.status == "norecord"){
                     alert("暂无该类文章！")
                 }else{
-
+                    alert("请求异常！")
                 }
             }
         });
 
-        function appendArticleList(){
+        function appendArticleList(list){
+            for(var i=0;i<list.length;i++){
+                var articleStr = '<li>'+
+                    '<a href="articleDetail?id='+list[i].id+'">'+
+                    '<img src="'+list[i].img+'" alt="" width="635" height="386">'+
+                    '<p><strong class="color_blue">'+list[i].title+'</strong><em>'+getAppendArticleListTime(list[i].createTime)+'</em></p>'+
+                    '</a>'+
+                    '</li>'
+                $("#cont_main_line").append(articleStr);
+            }
 
         }
 
@@ -177,7 +194,7 @@
                 dataType: "json",
                 success: function(data) {
                     if(data.status == "success"){
-                        alert("预定成功，请您留心电话，稍后会给你联系！")
+                        showpop();
                     }
                 }
             });
@@ -224,6 +241,24 @@
                 m = now.getMonth() + 1,
                 d = now.getDate();
             return ( y + "年" + (m < 10 ? "0" + m : m) + "月" + (d < 10 ? "0" + d : d) + "日");
+        }
+
+        function showpop(){
+            $("#pop_up").removeClass('none');
+        }
+
+        $("#closePop").click(function () {
+            $("#pop_up").addClass('none');
+        });
+
+        function getAppendArticleListTime(timeStamp){
+            var now = new Date(timeStamp),
+                y = now.getFullYear(),
+                m = now.getMonth() + 1,
+                d = now.getDate(),
+                h = now.getHours(),
+                min = now.getMinutes();
+            return ( y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + ""+ " "+h+":"+min);
         }
     </script>
 </body>

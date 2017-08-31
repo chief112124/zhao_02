@@ -88,6 +88,9 @@ body {
     font-size: 0;
     visibility: hidden;
 }
+.none {
+    display: none !important;
+}
 
 
 .banner_box {
@@ -304,6 +307,7 @@ body {
     font-size: 20px;
     color: #FFF;
     background-color: #1481EB;
+    cursor: pointer;
 }
 .sidebar_consult .tips_tel {
     margin-bottom: 12px;
@@ -390,4 +394,46 @@ body {
 .QR_code > li > p {
     margin-top: 12px;
     font-size: 16px;
+}
+
+/* ==== pop-up ==== */
+.pop_up {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+}
+.pop_up .pop_cont {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    height: 159px;
+    padding-top: 30px;
+    padding-bottom: 28px;
+    margin: -80px -130px;
+    font-size: 18px;
+    line-height: 27px;
+    color: #1581EA;
+    background-color: #FFF;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    box-sizing: border-box;
+}
+.pop_cont > button {
+    margin-top: 14px;
+    padding: 7px 21px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #FFF;
+    background-color: #1581EA;
+    border: none;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    cursor: pointer;
 }

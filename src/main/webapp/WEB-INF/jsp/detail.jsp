@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="renderer" content="webkit">
     <title>产品详情页</title>
+    <link rel="stylesheet" href="/css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/detail.css">
 </head>
@@ -90,7 +91,7 @@
                     </div>
                     <div class="reserve_button clearfix">
                         <span id="allPrice" class="all_price"></span>
-                        <a href="#" onclick="addOrderByWeb()">立即预订</a>
+                        <a href="#" class="pop_reserve" onclick="addOrderByWeb()">立即预订</a>
                     </div>
                 </form>
                 <div class="tel_bottom">预订电话010-85632746<br></div>
@@ -193,8 +194,34 @@
             </ul>
         </div>
     </div>
-    <script src="/js/jquery-1.12.3.min.js"></script>
-    <script src="/js/main.js"></script>
+
+    <div class="pop_up pop_swiper none">
+        <div class="swiper_box">
+            <img src="images/swiper-close.png" width="35" height="35" alt="关闭" class="close_swiper">
+            <div class="swiper-container swiper-container-flip pop_photo">
+                <div class="swiper-wrapper" id="swiper">
+                    <%--<div class="swiper-slide"><img src="images/detail_img3.png" width="1000" alt=""></div>
+                    <div class="swiper-slide"><img src="images/detail_img3.png" width="1000" alt=""></div>
+                    <div class="swiper-slide"><img src="images/detail_img3.png" width="1000" alt=""></div>--%>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
+    <div id="pop_up" class="pop_up none">
+        <div class="pop_cont">
+            <p>您的信息已经提交<br>我们将尽快给您回电</p>
+            <button id="closePop" class="close_pop">好的</button>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" charset="utf-8" src="/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/swiper-3.4.2.jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/main.js"></script>
+
     <script type="text/javascript">
         var href = window.document.location.href;
         var lineId = href.split("=")[1];
@@ -214,6 +241,7 @@
                     $("#detailBigBanner").attr("src",data.data.lineImgs[0].url);
                     $("#detailSmallBanner1").attr("src",data.data.lineImgs[1].url);
                     $("#detailSmallBanner2").attr("src",data.data.lineImgs[2].url);
+                    appendSwiper(data.data.lineImgs);
                     appendSchedule(data.data.days);
                 }
             }
@@ -249,7 +277,7 @@
                 dataType: "json",
                 success: function(data) {
                     if(data.status == "success"){
-                        alert("预定成功，请您留心电话，稍后会给你联系！")
+                        showpop();
                     }
                 }
             });
@@ -268,6 +296,14 @@
                 $("#"+idStr).append(content);
             }
         }
+
+        function appendSwiper(imgs){
+            for(var i=0;i<imgs.length;i++){
+                $("#swiper").append('<div class="swiper-slide"><img src="'+imgs[i].url+'" height="500" width="1000" alt=""></div>')
+            }
+        }
+
+
 
         function appendSchedule(days) {
             for(var i=0;i<days.length;i++){
@@ -304,6 +340,14 @@
                 d = now.getDate();
             return ( y + "年" + (m < 10 ? "0" + m : m) + "月" + (d < 10 ? "0" + d : d) + "日");
         }
+
+        function showpop(){
+            $("#pop_up").removeClass('none');
+        }
+
+        $("#closePop").click(function () {
+            $("#pop_up").addClass('none');
+        });
     </script>
 </body>
 </html>

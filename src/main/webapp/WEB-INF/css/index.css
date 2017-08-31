@@ -84,3 +84,23 @@
 .index_main > dl > dd .content_item:first-child {
     margin-bottom: 20px;
 }
+
+.link_detail {
+    display: block;
+    height: 205px;
+    margin-bottom: -22px;
+    background: url("../images/link_detail_bg.jpg") no-repeat center;
+}
+.link_detail > p {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 77px 0;
+    font-size: 36px;
+    line-height: 50px;
+    color: #FFF;
+}
+.link_detail > p > img {
+    margin-left: 18px;
+    vertical-align: text-top;
+}

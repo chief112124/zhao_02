@@ -277,3 +277,35 @@ ul.itinerary_list > li {
     font-size: 18px;
     color: #1581EA;
 }
+
+.swiper_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 1100px;
+    height: 550px;
+    margin: -270px -550px;
+    text-align: right;
+}
+.swiper_box .close_swiper {
+    margin-bottom: 13px;
+    margin-right: 12px;
+}
+.pop_photo {
+    position: absolute;
+    left: 50%;
+    width: 1000px;
+    height: 502px;
+    overflow: hidden;
+    margin: 0 -500px;
+}
+.swiper-button-prev,
+.swiper-container-rtl
+.swiper-button-next {
+    background: url(/images/zuoanniu.png) no-repeat;
+}
+.swiper-button-next,
+.swiper-container-rtl
+.swiper-button-prev {
+    background: url(/images/youanniu.png) no-repeat;
+}
