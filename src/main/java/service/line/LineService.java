@@ -193,7 +193,12 @@ public class LineService {
         boolean flag = true;
         List<Integer> nums = new ArrayList<>();
         if(lines.size()<=3){
-            result.setData(returnLines);
+            for(Line line:lines){
+                List<LineImg> imgs = lineImgDao.getLineImgByLineId(line.getId());
+                line.setLineImgs(imgs);
+            }
+            result.setData(lines);
+            return result;
         }else {
             while(flag){
                 int num = random.nextInt(lines.size());

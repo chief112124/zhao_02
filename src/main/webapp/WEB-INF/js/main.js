@@ -62,11 +62,16 @@ $(function(){
     $('.photo_show img').click(function() {
        $('.pop_swiper').removeClass('none');
     });
-    var mySwiper = new Swiper('.pop_photo', {
-        loop: true,
-        autoplay: 5000,
-        prevButton:'.swiper-button-prev',
-        nextButton:'.swiper-button-next'
+    /*swiper*/
+    $('.photo_show img').click(function () {
+        $('.pop_swiper').removeClass('none');
+
+        var mySwiper = new Swiper ('.pop_photo', {
+            loop: true,
+            autoplay: 1000,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+        });
     });
     $('.close_swiper').click(function () {
         $('.pop_swiper').addClass('none');
