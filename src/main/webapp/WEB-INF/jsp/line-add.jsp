@@ -119,7 +119,7 @@
         var uploadSmallBanner2Img = $("#uploadSmallBanner2Img").attr("src");
         var lineName = $("#lineName").val();
         var goTimeStamp = $("#goTimeStamp").val();
-        var lineContent = $("#lineContent").val();
+        var lineContent = lineAddEditor.html(lineContent);
         var price = $("#price").val();
         if(uploadBigBannerImg == "" || uploadSmallBanner1Img == "" || uploadSmallBanner2Img == "" || lineName == "" || goTimeStamp == "" || lineContent == "" || price == "" ){
             alert("信息不全！")
