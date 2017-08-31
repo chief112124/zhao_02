@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by as749 on 2017/8/24.
@@ -41,6 +42,30 @@ public class FileController {
         result.setUrl("http://47.94.175.16/imageWeb"+"/"+fileName);
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/uploadNew" ,method = RequestMethod.POST)
+    public HashMap<String, Object> uploadNew(@RequestParam(value="img",required=false) MultipartFile img, HttpServletRequest request, HttpServletResponse response) throws Exception{
+        HashMap<String, Object> map = new HashMap<>();
+        String path = "/home/ftpuser/www/imageWeb/";
+        String fileName = new Date().getTime()+".jpg";
+        File targetFile = new File(path, fileName);
+        if(!targetFile.exists()){
+            targetFile.mkdirs();
+        }
+        //保存
+        try {
+            img.transferTo(targetFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        map.put("error", 0);
+        map.put("url", "http://47.94.175.16/imageWeb"+"/"+fileName);
+
+        return map;
+
+    }
+
 
     @RequestMapping(value = "/uploadtest")
     @ResponseBody

@@ -29,12 +29,16 @@
 
         文章类型:
             <select id="articleType" class="easyui-combobox" style="width:100px">
-                <option value="0">全部</option>
-                <option value="1">情感</option>
-                <option value="2">军事</option>
-                <option value="3">历史</option>
-                <option value="4">搞笑</option>
-                <option value="5">社会</option>
+                <option value="1">惠玩食宿行</option>
+                <option value="2">行摄北非</option>
+                <option value="3">贴心的话</option>
+                <option value="4">关于我们</option>
+                <option value="5">诚心</option>
+                <option value="6">贴心</option>
+                <option value="7">细心</option>
+                <option value="8">信心</option>
+                <option value="9">走心</option>
+                <option value="10">底部广告</option>
             </select>
             <a id="doSearch" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
     </div>
