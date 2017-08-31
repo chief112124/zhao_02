@@ -4,10 +4,7 @@ import model.Result;
 import model.admin.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import service.admin.AdminService;
 
 import java.util.List;
@@ -44,7 +41,7 @@ public class AdminC {
     }
 
     /*测试*/
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Result login(@RequestBody Admin admin){
         Result result = new Result();
