@@ -192,30 +192,34 @@ public class LineService {
         Random random = new Random();
         boolean flag = true;
         List<Integer> nums = new ArrayList<>();
-        while(flag){
-            int num = random.nextInt(lines.size());
-            if(nums.size() == 0){
-                nums.add(num);
-            }else {
-                boolean has = false;
-                for (Integer i : nums){
-                    if(i == num){
-                        has = true;
-                        break;
+        if(lines.size()<=3){
+            result.setData(returnLines);
+        }else {
+            while(flag){
+                int num = random.nextInt(lines.size());
+                if(nums.size() == 0){
+                    nums.add(num);
+                }else {
+                    boolean has = false;
+                    for (Integer i : nums){
+                        if(i == num){
+                            has = true;
+                            break;
+                        }
+                    }
+                    if(!has){
+                        nums.add(num);
                     }
                 }
-                if(!has){
-                    nums.add(num);
+                if(nums.size() == 3){
+                    flag = false;
                 }
             }
-            if(nums.size() == 3){
-                flag = false;
+            for(Integer i : nums){
+                List<LineImg> imgs = lineImgDao.getLineImgByLineId(lines.get(i).getId());
+                lines.get(i).setLineImgs(imgs);
+                returnLines.add(lines.get(i));
             }
-        }
-        for(Integer i : nums){
-            List<LineImg> imgs = lineImgDao.getLineImgByLineId(lines.get(i).getId());
-            lines.get(i).setLineImgs(imgs);
-            returnLines.add(lines.get(i));
         }
         result.setData(returnLines);
         return result;
