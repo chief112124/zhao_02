@@ -123,7 +123,7 @@
         var goTimeStamp = $("#editGoTimeStamp").val();
 
         lineEditEditor.sync();
-        var lineContent = lineEditEditor.html(lineContent);
+        var lineContent = lineEditEditor.html(editLineContent);
         var price = $("#editPrice").val();
         if(uploadBigBannerImg == "" || uploadSmallBanner1Img == "" || uploadSmallBanner2Img == "" || lineName == "" || goTimeStamp == "" || lineContent == "" || price == "" ){
             alert("信息不全！")
@@ -234,11 +234,15 @@
                 }
             }
         })
-    }  
+    }
 
     function initData(line) {
         $("#editLineName").val(line.lineName);
-        lineEditEditor.html(lineContent, line.lineContent);
+
+        $('#editLineContent').html(line.lineContent);
+        //
+        lineEditEditor.html(line.lineContent);
+        lineEditEditor.sync();
         $("#editGoTimeStamp").val(new Date(line.goTimeStamp).Format("yyyy-MM-dd hh:mm:ss"));
         $("#editPrice").val(line.price);
         var flag = false;
