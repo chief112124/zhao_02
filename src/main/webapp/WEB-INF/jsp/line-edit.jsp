@@ -234,7 +234,7 @@
                 }
             }
         })
-    }
+    }  
 
     function initData(line) {
         $("#editLineName").val(line.lineName);
