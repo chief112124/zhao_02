@@ -90,7 +90,7 @@
         //创建富文本编辑器
         lineEditEditor = KindEditor.create("#editLineContent", TT.kingEditorParams)
     });
-
+    lineEditEditor.sync();
 
     var lineId = 0;
     var int = self.setInterval("clock()",50);
@@ -119,11 +119,11 @@
         var uploadBigBannerImg = $("#uploadEditBigBannerImg").attr("src");
         var uploadSmallBanner1Img = $("#uploadEditSmallBanner1Img").attr("src");
         var uploadSmallBanner2Img = $("#uploadEditSmallBanner2Img").attr("src");
-        var lineName = $("#editLineName").html(editLineContent);
+        var lineName = $("#lineEditEditor").html(editLineContent);
         var goTimeStamp = $("#editGoTimeStamp").val();
 
         lineEditEditor.sync();
-        var lineContent = lineEditEditor.html(lineContent);
+        var lineContent = lineEditEditor.html();
         var price = $("#editPrice").val();
         if(uploadBigBannerImg == "" || uploadSmallBanner1Img == "" || uploadSmallBanner2Img == "" || lineName == "" || goTimeStamp == "" || lineContent == "" || price == "" ){
             alert("信息不全！")
@@ -234,11 +234,15 @@
                 }
             }
         })
-    }  
+    }
 
     function initData(line) {
         $("#editLineName").val(line.lineName);
-        lineEditEditor.html(lineContent, line.lineContent);
+
+        $('#editLineContent').html(line.lineContent);
+        //
+        lineEditEditor.html(line.lineContent);
+        lineEditEditor.sync();
         $("#editGoTimeStamp").val(new Date(line.goTimeStamp).Format("yyyy-MM-dd hh:mm:ss"));
         $("#editPrice").val(line.price);
         var flag = false;
