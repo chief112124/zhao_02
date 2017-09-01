@@ -33,12 +33,13 @@
 			</tr>
 			<tr>
 				<td>封面图:</td>
-				<td>
-					<input name="img" style="width: 200px">
-					<input id="articleImage" type="file" name="file" onchange="upload(this)" />
 
+				<td><img id="myimg" name="myimg" width='80' height='50'/>
+					<input type="hidden" name="img" />
+					<a href="javascript:void(0)" class="easyui-linkbutton oneImagePicUpload" id="articleBtn">图片上传</a>
 				</td>
 			</tr>
+			<tr>
 			<tr>
 				<td>文章内容:</td>
 				<td>
@@ -56,7 +57,19 @@
 	$(function(){
 		//实例化编辑器
 		itemEditEditor = TAOTAO.createEditor("#itemeEditForm [name=content]");
+		TT.initArticlePicUpload();
 	});
+
+
+    var int = self.setInterval("clock()",50);
+    function clock(){
+        var  imgsrc = $("input[name = 'img']").val();
+        if(imgsrc != ''){
+            window.clearInterval(int);
+        }
+        $("#myimg").attr("src", $("input[name = 'img']").val());
+
+    }
 
 	function submitForm(){
 		if(!$('#itemeEditForm').form('validate')){
@@ -72,7 +85,7 @@
 				});
 			}
 		});
-	}
+	};
 
 
     function upload(obj){
@@ -113,5 +126,7 @@
                 }
             }
         })
-    }
+    };
+
+
 </script>

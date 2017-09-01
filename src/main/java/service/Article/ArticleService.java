@@ -119,7 +119,6 @@ public class ArticleService {
         result.setTotal(articles.size());
 
             try{
-            articles = articleDao.queryAll(map);
             if(articles == null || articles.size() == 0) {
                 result.setStatus(Result.NORECORD);
                 result.setMessage("记录不存在！");

@@ -35,7 +35,8 @@
 
 			<tr>
 				<td>封面图:</td>
-				<td><input class="easyui-image" type="image" name="img" disabled="disabled"/>
+				<td><img id="myimg" width='80' height='50' disabled="disabled"/>
+					<input type="hidden" name="img">
 				</td>
 			</tr>
 
@@ -52,11 +53,23 @@
 	var itemDetailEditor ;
 	$(function(){
 
-/*        var mydata = $("#itemDetailForm").form('getData');
+     /*   var mydata = $("#itemDetailForm").form('getData');
 		alert("=============="+mydata);*/
 
 		//实例化编辑器
 		itemDetailEditor = TAOTAO.createEditor("#itemDetailForm [name=content]");
 		itemDetailEditor.readonly(true);
 	});
+
+
+    var int = self.setInterval("clock()",50);
+    function clock(){
+        var  imgsrc = $("input[name = 'img']").val();
+        if(imgsrc != ''){
+            window.clearInterval(int);
+        }
+        $("#myimg").attr("src", $("input[name = 'img']").val());
+
+    }
+
 </script>

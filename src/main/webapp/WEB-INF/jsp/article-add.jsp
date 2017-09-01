@@ -12,7 +12,7 @@
 	        <tr>
 	            <td>文章类型:</td>
 				<td>
-					<select id="cc" class="easyui-combobox" name="articletype">
+					<select id="cc" class="easyui-combobox" name="articleType">
 						<option value="1">惠玩食宿行</option>
 						<option value="2">行摄北非</option>
 						<option value="3">贴心的话</option>
@@ -31,11 +31,21 @@
 	            <td><input class="easyui-textbox" type="text" name="sort" data-options="min:1,max:99999999,precision:2" />
 	            </td>
 	        </tr>
+<%--			<tr>
+				<td>封面图:</td>
+				<td><input id="articleImage" type="file" onchange="upload()" />
+				</td>
+			</tr>--%>
+
+
 			<tr>
 				<td>封面图:</td>
-				<td><input id="articleImage" type="file" name="file" onchange="upload(this)" />
+				<td>
+					<input type="hidden" name="img" />
+					<a href="javascript:void(0)" class="easyui-linkbutton oneImagePicUpload" id="articleBtn">图片上传</a>
 				</td>
 			</tr>
+			<tr>
 
 	        <tr>
 	            <td>文章内容:</td>
@@ -56,6 +66,8 @@
 	$(function(){
 		//创建富文本编辑器
 		itemAddEditor = KindEditor.create("#itemAddForm [name=content]", TT.kingEditorParams)
+        TT.initArticlePicUpload();
+
 	});
 	//提交表单
 	function submitForm(){
@@ -82,25 +94,29 @@
 	}
 
 
-    function upload(obj){
+    function upload(){
+		var docObj = document.getElementById("articleImage");
+		var files = document.getElementById("articleImage").value;
 
-        var file =obj.value;
-        if(!/.(gif|jpg|jpeg|png|GIF|JPG|png)$/.test(file)){
-            alert("图片类型必须是.gif,jpeg,jpg,png中的一种");
-            return false;
-        }else{
-            var image = new Image();
-            image.src = file;
-            var height = image.height;
-            var width = image.width;
-            var filesize = image.filesize;
-            if(width!=635 && height!=386 ){
-                alert('请上传635*386像素的图片');
-                return false;
-            }
+
+        alert("-------------------"+files);
+
+        if (null == files || '' == files) {
+            $.messager.alert('温馨提示','请上传图片封面信息。','info');
+            return;
         }
 
-        $.ajaxFileUpload({
+    	if (docObj.files && docObj.files[0]) {
+    	    var img = new Image;
+    	    img.onload = function () {
+				alert(img.height);
+            }
+            var width = img.width;
+    	    var height = img.height;
+
+		}
+
+   /*     $.ajaxFileUpload({
             url:"/file/upload",
             type:'post',
             secureuri: false,
@@ -120,8 +136,25 @@
                     }
                 }
             }
-        })
+        })*/
     }
+
+
+    $("articleBtn").click(function(){
+        var _self = $(this);
+        KindEditor.editor(TT.kingEditorParams).loadPlugin('image', function() {
+            this.plugin.imageDialog({
+                showRemote : false,
+                clickFn : function(url, title, width, height, border, align) {
+                    var input = _self.siblings("input");
+                    input.parent().find("image").remove();
+                    input.val(url);
+                    input.after("<a href='"+url+"' target='_blank'><img src='"+url+"' width='80' height='50'/></a>");
+                    this.hideDialog();
+                }
+            });
+        });
+    });
 
 
 

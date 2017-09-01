@@ -61,6 +61,8 @@ var TT = TAOTAO = {
         this.initPicUpload(data);
         // 初始化选择类目组件
         this.initItemCat(data);
+
+        this.initArticlePicUpload(data)
     },
     // 初始化图片上传组件
     initPicUpload : function(data){
@@ -239,6 +241,27 @@ var TT = TAOTAO = {
                     showRemote : false,
                     clickFn : function(url, title, width, height, border, align) {
                         var input = _self.siblings("input");
+                        input.parent().find("image").remove();
+                        input.val(url);
+                        input.after("<a href='"+url+"' target='_blank'><img src='"+url+"' width='80' height='50'/></a>");
+                        this.hideDialog();
+                    }
+                });
+            });
+        });
+    },
+
+
+    // 初始化图片上传组件
+    initArticlePicUpload : function(){
+        $(".oneImagePicUpload").click(function(){
+            var _self = $(this);
+            KindEditor.editor(TT.kingEditorParams).loadPlugin('image', function() {
+                this.plugin.imageDialog({
+                    showRemote : false,
+                    clickFn : function(url, title, width, height, border, align) {
+                        var input = _self.siblings("input");
+                        //input.parent().find("myimg").remove();
                         input.parent().find("img").remove();
                         input.val(url);
                         input.after("<a href='"+url+"' target='_blank'><img src='"+url+"' width='80' height='50'/></a>");
@@ -247,5 +270,6 @@ var TT = TAOTAO = {
                 });
             });
         });
-    }
+    },
+
 };
