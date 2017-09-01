@@ -9,7 +9,6 @@
         <th data-options="field:'id',width:60">文章ID</th>
         <th data-options="field:'title',width:200">文章标题</th>
         <th data-options="field:'typeStr',width:100">文章类别</th>
-        <th data-options="field:'content',width:100">文章内容</th>
         <th data-options="field:'img',width:50,align:'center',formatter:TAOTAO.formatUrl">图片</th>
         <th data-options="field:'status',width:100">状态</th>
         <th data-options="field:'sort',width:100">排序</th>

@@ -35,7 +35,7 @@
 
 			<tr>
 				<td>封面图:</td>
-				<td><img id="myimg" width='80' height='50' disabled="disabled"/>
+				<td><img id="mydetailimg" width='80' height='50' disabled="disabled"/>
 					<input type="hidden" name="img">
 				</td>
 			</tr>
@@ -68,7 +68,7 @@
         if(imgsrc != ''){
             window.clearInterval(int);
         }
-        $("#myimg").attr("src", $("input[name = 'img']").val());
+        $("#mydetailimg").attr("src", $("input[name = 'img']").val());
 
     }
 

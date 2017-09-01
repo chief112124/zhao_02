@@ -120,7 +120,11 @@
         var uploadSmallBanner1Img = $("#uploadEditSmallBanner1Img").attr("src");
         var uploadSmallBanner2Img = $("#uploadEditSmallBanner2Img").attr("src");
         var goTimeStamp = $("#editGoTimeStamp").val();
-        var lineContent = lineEditEditor.html(editLineContent);
+
+        lineEditEditor.sync();
+        html=document.getElementById('editLineContent').value;
+
+        var lineContent = html;
        //var lineContent = lineAddEditor.html(lineContent);
 
         var lineName = $("#editLineName").val();
