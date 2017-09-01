@@ -19,6 +19,7 @@ public class ArticleService {
 
   @Autowired
   ArticleDao articleDao;
+
     public Result addArticle(Article article) {
         Result result = new Result();
         result.setStatus(Result.SUCCESS);
@@ -95,6 +96,7 @@ public class ArticleService {
                 result.setStatus(Result.NORECORD);
                 result.setMessage("记录不存在！");
                 result.setTotal(0);
+                result.setRows(0);
                 return result;
             }
             result.setTotal(count);

@@ -12,7 +12,7 @@ public class PageC {
     /*��ʾ��ҳ*/
     @RequestMapping("/backend")
     public String showIndex() {
-        return "index";
+        return "login";
     }
 
     /*��ʾ��ҳ*/

@@ -29,7 +29,7 @@
         </div>
         <div style="margin-bottom:20px">
             <div>
-                密&nbsp;&nbsp;码: <input name="password" class="easyui-textbox" type="password" style="width:200px;height:32px" data-options="" value="admin"/>
+                密&nbsp;码: <input name="password" class="easyui-textbox" type="password" style="width:200px;height:32px" data-options="" value="admin"/>
             </div>
         </div>
         <div>
@@ -54,10 +54,12 @@
             success : function(result) {
                 if (result.status == "success") {
                     window.location.href="/index";
+                } else {
+                    alert(result.message);
                 }
             },
-            error:function(msg){
-                $.messager.alert('错误',"用户名密码不正确！");
+            error:function(result){
+               alert(result.message);
             }
         })
 

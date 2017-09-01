@@ -133,7 +133,11 @@ public class LineService {
                 line.setLineImgs(lineImgDao.getLineImgByLineId(line.getId()));
                 line.setDays(dayDao.getDaysByLineId(line.getId()));
             }*/
-            result.setRows(lines);
+            if (lines.size()>0) {
+                result.setRows(lines);
+            } else {
+                result.setRows(0);
+            }
         }catch (Exception e){
             result.setStatus(Result.INCORRECT);
             result.setMessage("系统异常！");

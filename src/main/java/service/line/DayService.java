@@ -131,6 +131,9 @@ public class DayService {
             if (count != 0 && days.size() > 0) {
                 result.setTotal(count);
                 result.setRows(days);
+            } else {
+                result.setTotal(0);
+                result.setRows(0);
             }
         } catch (Exception e) {
             e.printStackTrace();

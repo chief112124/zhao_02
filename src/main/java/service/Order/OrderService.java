@@ -93,8 +93,14 @@ public class OrderService {
                 result.setStatus(Result.NORECORD);
                 result.setMessage("记录不存在！");
             }
-            result.setTotal(count);
-            result.setRows(orders);
+            if (orders.size()>0) {
+                result.setTotal(count);
+                result.setRows(orders);
+            } else {
+                result.setTotal(0);
+                result.setRows(0);
+            }
+
         }catch (Exception e){
             result.setStatus(Result.INCORRECT);
             result.setMessage("查询失败！");
