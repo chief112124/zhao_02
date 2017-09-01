@@ -119,11 +119,13 @@
         var uploadBigBannerImg = $("#uploadEditBigBannerImg").attr("src");
         var uploadSmallBanner1Img = $("#uploadEditSmallBanner1Img").attr("src");
         var uploadSmallBanner2Img = $("#uploadEditSmallBanner2Img").attr("src");
-        var lineName = $("#lineEditEditor").html(editLineContent);
         var goTimeStamp = $("#editGoTimeStamp").val();
-
         lineEditEditor.sync();
-        var lineContent = lineEditEditor.html();
+        html = document.getElementById('editLineContent').value;
+        var lineContent = html;
+       //var lineContent = lineAddEditor.html(lineContent);
+
+        var lineName = $("#editLineName").val();
         var price = $("#editPrice").val();
         if(uploadBigBannerImg == "" || uploadSmallBanner1Img == "" || uploadSmallBanner2Img == "" || lineName == "" || goTimeStamp == "" || lineContent == "" || price == "" ){
             alert("信息不全！")
