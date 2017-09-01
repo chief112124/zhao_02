@@ -27,8 +27,8 @@
 
 				</td>	        </tr>
 	        <tr>
-	            <td>文章分类:</td>
-	            <td><input class="easyui-textbox" type="text" name="sort" data-options="min:1,max:99999999,precision:2" />
+	            <td>排序:</td>
+	            <td><input class="easyui-numberbox" type="text" name="sort" />
 	            </td>
 	        </tr>
 <%--			<tr>
@@ -42,7 +42,7 @@
 				<td>封面图:</td>
 				<td>
 					<input type="hidden" name="img" />
-					<a href="javascript:void(0)" class="easyui-linkbutton oneImagePicUpload" id="articleBtn">图片上传</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton oneImagePicUpload" id="articleBtn">图片上传</a><div style="color: #c9302c">请上传尺寸为635 * 386的图片 </div>
 				</td>
 			</tr>
 			<tr>
@@ -92,70 +92,5 @@
 		$('#itemAddForm').form('reset');
 		itemAddEditor.html('');
 	}
-
-
-    function upload(){
-		var docObj = document.getElementById("articleImage");
-		var files = document.getElementById("articleImage").value;
-
-
-        alert("-------------------"+files);
-
-        if (null == files || '' == files) {
-            $.messager.alert('温馨提示','请上传图片封面信息。','info');
-            return;
-        }
-
-    	if (docObj.files && docObj.files[0]) {
-    	    var img = new Image;
-    	    img.onload = function () {
-				alert(img.height);
-            }
-            var width = img.width;
-    	    var height = img.height;
-
-		}
-
-   /*     $.ajaxFileUpload({
-            url:"/file/upload",
-            type:'post',
-            secureuri: false,
-            contentType: false,
-            fileElementId:'articleImage',
-            processData: false,
-            dataType: 'json',
-            success:function(data){
-                if(data.status == 'success'){
-                    var imgIdStr = obj.getAttribute("id") + 'Img';
-//                    document.getElementById(imgIdStr).src = data.data;
-                    document.getElementById(imgIdStr).src = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4267222417,1017407570&fm=200&gp=0.jpg";
-                    if(document.getElementById(imgIdStr).name == "otherImg"){
-                        var objTr = document.getElementById(idStr).parentNode.parentNode;
-                        $(objTr).append('<td><input type="button" onclick="javascript:deleteOtherImgTr(this)" id="deleteOtherImg" value="删除"/></td>');
-                        appendOtherImgTr();
-                    }
-                }
-            }
-        })*/
-    }
-
-
-    $("articleBtn").click(function(){
-        var _self = $(this);
-        KindEditor.editor(TT.kingEditorParams).loadPlugin('image', function() {
-            this.plugin.imageDialog({
-                showRemote : false,
-                clickFn : function(url, title, width, height, border, align) {
-                    var input = _self.siblings("input");
-                    input.parent().find("image").remove();
-                    input.val(url);
-                    input.after("<a href='"+url+"' target='_blank'><img src='"+url+"' width='80' height='50'/></a>");
-                    this.hideDialog();
-                }
-            });
-        });
-    });
-
-
 
 </script>

@@ -29,8 +29,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>文章分类:</td>
-				<td><input class="easyui-textbox" type="text" name="sort"  disabled="disabled" /></td>
+				<td>排序:</td>
+				<td><input class="easyui-numberbox" type="text" name="sort"  disabled="disabled" /></td>
 			</tr>
 
 			<tr>

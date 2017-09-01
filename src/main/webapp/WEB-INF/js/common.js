@@ -62,7 +62,7 @@ var TT = TAOTAO = {
         // 初始化选择类目组件
         this.initItemCat(data);
 
-        this.initArticlePicUpload(data)
+        this.initArticlePicUpload()
     },
     // 初始化图片上传组件
     initPicUpload : function(data){
@@ -270,6 +270,6 @@ var TT = TAOTAO = {
                 });
             });
         });
-    },
+    }
 
 };
