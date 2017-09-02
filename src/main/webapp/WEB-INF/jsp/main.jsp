@@ -141,7 +141,7 @@
         </ul>
     </div>
 </div>--%>
-<a href="Article_Detail.html" class="link_detail">
+<a href="articleDetail?type=10" class="link_detail">
     <p>来自北非的前线报道<img src="images/arrow_play.png" alt="来自北非的前线报道" width="47" height="47"></p>
 </a>
 <div class="footer_box">

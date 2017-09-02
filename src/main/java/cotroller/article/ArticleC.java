@@ -54,11 +54,4 @@ public class ArticleC {
         Result result = articleService.queryAll(rows.intValue(), page.intValue());
         return result;
     }
-
-    @RequestMapping(value = "/queryOther")
-    @ResponseBody
-    public Result queryOther(int id) {
-
-        return null;
-    }
 }
