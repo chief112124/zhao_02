@@ -73,8 +73,8 @@ public class LineService {
         result.setStatus(Result.SUCCESS);
         try{
             lineDao.deleteLineById(lineId);
-          /*  lineImgDao.deleteImgBylineId(lineId);
-            dayDao.deleteDaysByLineId(lineId);*/
+            lineImgDao.deleteImgBylineId(lineId);
+            dayDao.deleteDaysByLineId(lineId);
         }catch (Exception e){
             result.setStatus(Result.INCORRECT);
             result.setMessage("删除失败！");

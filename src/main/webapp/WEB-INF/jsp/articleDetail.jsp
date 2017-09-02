@@ -30,8 +30,8 @@
 
     <div class="list_cont_box clearfix">
         <div class="fl" id="cont_main_line">
-            <h2 id="cont_title" class="cont_title">“行之悦旅行” 尽在北非</h2>
-            <p id="cont_time" class="cont_time">2017-08-10     15:26</p>
+            <h2 id="cont_title" class="cont_title"></h2>
+            <p id="cont_time" class="cont_time"></p>
             <ul class="cont_main detail_word">
                 <li id="detailLi">
                     <%--<a href="#">
@@ -147,7 +147,7 @@
         var type = args.split("=")[0];
         var id = args.split("=")[1];
         if(type == "type"){
-            getArticleDetail("/article/queryArticleByType?type="+id+"&page=1&rows=1");
+            getArticleDetail("/article/queryArticleByType?articleType="+id+"&page=1&rows=1");
         }else if(type == "id"){
             getArticleDetail("/article/queryArticleById?id="+id);
         }
@@ -159,7 +159,12 @@
                 dataType: "json",
                 success: function(data) {
                     if(data.status == "success"){
-                        appendArticleDetail(data.data);
+                        if(type == "type"){
+                            detail = data.rows[0]
+                        }else if(type == "id"){
+                            detail = data.data;
+                        }
+                        appendArticleDetail(detail);
                     }else if(data.status == "norecord"){
                         alert("记录不存在！")
                     }else{
@@ -169,16 +174,10 @@
             });
         }
 
-        function appendArticleDetail(data){
-            var detail = null;
-            if(type == "type"){
-                detail = data[0]
-            }else if(type == "id"){
-                detail = data;
-            }
-            $("#cont_title").text(data.title);
-            $("#cont_time").text(getAppendArticleListTime(data.createTime));
-            $("#detailLi").append(data.content);
+        function appendArticleDetail(detail){
+            $("#cont_title").text(detail.title);
+            $("#cont_time").text(getAppendArticleListTime(detail.createTime));
+            $("#detailLi").append(detail.content);
         }
 
         function addOrderByWebArticleDetail(){
@@ -223,7 +222,6 @@
                     '<p>预计出行时间：'+getAppendTime(lines[i].goTimeStamp)+'<em class="color_blue fr">¥'+lines[i].price+'元／人</em></p>'+
                     '</a>';
                 var idStr = "otherLine"+i.toString();
-                console.log($("#"+idStr));
                 $("#"+idStr).append(content);
             }
         }
@@ -260,7 +258,7 @@
                 d = now.getDate(),
                 h = now.getHours(),
                 min = now.getMinutes();
-            return ( y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + ""+ " "+h+":"+min);
+            return ( y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + ""+ " "+h+":"+((min < 10 ? "0" + min : min)));
         }
     </script>
 </body>
