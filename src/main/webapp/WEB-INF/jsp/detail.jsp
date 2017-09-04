@@ -306,20 +306,31 @@
 
 
         function appendSchedule(days) {
+            console.log(days);
             for(var i=0;i<days.length;i++){
                 var dayStr = '<div class="item">'+
                 '<p class="destination"><i class="detail_icon"><em>'+days[i].dayNum+'</em></i>'+days[i].title+'</p>'+
-                '<ul class="itinerary_list list_icon clearfix">'+
-                '<li><i class="detail_icon"></i><span>'+days[i].meal+'</span></li>'+
-                '<li><i class="detail_icon"></i><span>'+days[i].hotel+'</span></li>'+
-                '</ul>'+
-                '<h4>行程</h4>'+
-                '<ul class="itinerary_list"><li>'+days[i].travel+'</li>'+
-                '</ul>'+
-                '<h4>亮点</h4>'+
-                '<ul class="itinerary_list"><li>'+days[i].linghtPoint+'</li>'+
-                '</ul>'+
-                '</div>';
+                '<ul class="itinerary_list list_icon clearfix">';
+                if(days[i].meal != null && days[i].meal != ""){
+                    dayStr = dayStr + '<li><i class="detail_icon"></i><span>'+days[i].meal+'</span></li>';
+                }
+                if(days[i].hotel != null && days[i].hotel != ""){
+                    dayStr = dayStr +  '<li><i class="detail_icon"></i><span>'+days[i].hotel+'</span></li>';
+                }
+
+                dayStr = dayStr + '</ul>';
+                if(days[i].travel != null && days[i].travel != "" && days[i].travel != "<br />"){
+                    dayStr = dayStr + '<h4>行程</h4>'+
+                        '<ul class="itinerary_list"><li>'+days[i].travel+'</li>'+
+                        '</ul>';
+                }
+                if(days[i].linghtPoint != null && days[i].linghtPoint != "" && days[i].linghtPoint != "<br />"){
+                    dayStr = dayStr + '<h4>亮点</h4>'+
+                        '<ul class="itinerary_list"><li>'+days[i].linghtPoint+'</li>'+
+                        '</ul>';
+                }
+
+                dayStr = dayStr +  '</div>';
                 $("#schedule_list").append(dayStr);
             }
         }
